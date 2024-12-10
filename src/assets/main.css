@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+@layer base {
+  html {
+    font-size: 100%;
+  }
+
+  body {
+    line-height: 1.2;
+    letter-spacing: normal;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+}
