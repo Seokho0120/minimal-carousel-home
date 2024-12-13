@@ -17,7 +17,7 @@ const goToDocs = () => {
 };
 
 const goToGithub = () => {
-  window.open('https://github.com/Seokho0120/minimal-carousel', '_blank'); // Github 페이지를 새 탭에서 열기
+  window.open('https://github.com/Seokho0120/minimal-carousel', '_blank');
 };
 </script>
 
