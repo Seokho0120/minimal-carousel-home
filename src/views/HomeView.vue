@@ -1,12 +1,23 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { toast } from 'vue-sonner';
+
+const router = useRouter();
 
 const installText = ref('pnpm i minimal-carousel');
 
 const copyToInstallText = async () => {
   await navigator.clipboard.writeText(installText.value);
   toast.success(`Copy code: ${installText.value}`);
+};
+
+const goToDocs = () => {
+  router.push('/docs');
+};
+
+const goToGithub = () => {
+  window.open('https://github.com/Seokho0120/minimal-carousel', '_blank'); // Github 페이지를 새 탭에서 열기
 };
 </script>
 
@@ -25,12 +36,14 @@ const copyToInstallText = async () => {
 
       <div class="flex gap-2">
         <button
+          @click="goToDocs"
           class="bg-neutral-900 hover:bg-neutral-800 text-neutral-50 text-xs px-8 font-semibold rounded-md w-[152px] h-[42px]"
         >
           Document
         </button>
 
         <button
+          @click="goToGithub"
           class="bg-gradient-to-r from-white to-neutral-100 text-neutral-900 text-xs px-8 font-semibold rounded-md w-[152px] h-[42px] shadow-md border border-neutral-100 hover:bg-gradient-to-br hover:from-neutral-100 hover:to-white"
         >
           Github
