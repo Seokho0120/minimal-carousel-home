@@ -1,5 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+
+const currentPath = ref(route.path.replace('/docs/', ''));
+
+watch(route, (newRoute) => {
+  currentPath.value = newRoute.path.replace('/docs/', '');
+});
 
 const categories = ref([
   {
@@ -7,6 +16,7 @@ const categories = ref([
     items: [
       {
         name: 'home',
+        path: '/',
       },
     ],
   },
@@ -15,6 +25,7 @@ const categories = ref([
     items: [
       {
         name: 'Getting Started',
+        path: 'getting-started',
       },
     ],
   },
@@ -23,6 +34,7 @@ const categories = ref([
     items: [
       {
         name: 'imageItems',
+        path: 'image-items',
       },
       // {
       //   name: 'showPrevButton',
@@ -98,6 +110,12 @@ const categories = ref([
             :to="{
               name: item.name,
             }"
+            :class="[
+              'h-7 flex items-center px-2 rounded-md ',
+              currentPath === item.path
+                ? 'bg-[#f0f0f0] w-full'
+                : 'hover:bg-el-hover-bg',
+            ]"
           >
             {{ item.name }}
           </RouterLink>

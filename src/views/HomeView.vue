@@ -13,7 +13,7 @@ const copyToInstallText = async () => {
 };
 
 const goToDocs = () => {
-  router.push('/docs');
+  router.push('/docs/getting-started');
 };
 
 const goToGithub = () => {
