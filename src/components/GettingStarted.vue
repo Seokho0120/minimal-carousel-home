@@ -3,8 +3,21 @@ import { onMounted, ref } from 'vue';
 import { toast } from 'vue-sonner';
 import { createHighlighter } from 'shiki';
 
-const code = `pnpm i minimal-carousel`;
-const highlightedCode = ref('');
+const installCode = `pnpm i minimal-carousel`;
+const usageCode = `import { MinimalCarousel } from "minimal-carousel";
+import "minimal-carousel/minimal-carousel.css";
+
+const TEST = [
+  { link: 'test1.jpg', id: 1, name: "1" },
+  { link: 'test2.jpg', id: 2, name: "2" },
+  { link: 'test3.jpg', id: 3, name: "3" },
+];
+
+<MinimalCarousel :imageItems="TEST"/>
+`;
+
+const highlightedInstallCode = ref('');
+const highlightedUsageCode = ref('');
 
 onMounted(async () => {
   const highlighter = await createHighlighter({
@@ -12,17 +25,25 @@ onMounted(async () => {
     langs: ['bash'],
   });
 
-  highlightedCode.value = highlighter.codeToHtml(code, {
+  highlightedInstallCode.value = highlighter.codeToHtml(installCode, {
+    lang: 'bash',
+    theme: 'github-light',
+  });
+
+  highlightedUsageCode.value = highlighter.codeToHtml(usageCode, {
     lang: 'bash',
     theme: 'github-light',
   });
 });
 
-const installText = ref('pnpm i minimal-carousel');
-
 const copyToInstallText = async () => {
-  await navigator.clipboard.writeText(installText.value);
-  toast.success(`Copy code: ${installText.value}`);
+  await navigator.clipboard.writeText(installCode);
+  toast.success(`Copy code: ${installCode}`);
+};
+
+const copyToUsageText = async () => {
+  await navigator.clipboard.writeText(usageCode);
+  toast.success(`Copied code: ${usageCode}`);
 };
 </script>
 
@@ -88,7 +109,7 @@ const copyToInstallText = async () => {
             </button>
           </div>
 
-          <pre class="p-2" v-html="highlightedCode" />
+          <pre class="p-2" v-html="highlightedInstallCode" />
         </div>
       </div>
 
@@ -97,7 +118,7 @@ const copyToInstallText = async () => {
         <h2 class="font-semibold text-xl mb-4 text-neutral-800">Usage</h2>
         <div class="text-neutral-500">Add to your app</div>
 
-        <div class="border rounded-lg shadow-sm my-6 overflow-hidden">
+        <div class="text-sm border rounded-lg shadow-sm my-6 overflow-hidden">
           <div
             class="flex justify-between items-center p-2 border-b bg-neutral-50"
           >
@@ -119,7 +140,7 @@ const copyToInstallText = async () => {
               </svg>
               <span class="text-neutral-500">App.vue</span>
             </span>
-            <button @click="copyToInstallText">
+            <button @click="copyToUsageText">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -139,12 +160,7 @@ const copyToInstallText = async () => {
             </button>
           </div>
 
-          <!-- <code class="overflow-auto">
-            <p class="p-4 text-xs">
-              <span class="text-[#7548c3]">pnpm</span>
-              <span class="text-neutral-600"> i minimal-carousel</span>
-            </p>
-          </code> -->
+          <pre class="p-2" v-html="highlightedUsageCode" />
         </div>
       </div>
     </div>
