@@ -1,6 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { toast } from 'vue-sonner';
+import { createHighlighter } from 'shiki';
+
+const code = `pnpm i minimal-carousel`;
+const highlightedCode = ref('');
+
+onMounted(async () => {
+  const highlighter = await createHighlighter({
+    themes: ['github-light'],
+    langs: ['bash'],
+  });
+
+  highlightedCode.value = highlighter.codeToHtml(code, {
+    lang: 'bash',
+    theme: 'github-light',
+  });
+});
 
 const installText = ref('pnpm i minimal-carousel');
 
@@ -30,7 +46,7 @@ const copyToInstallText = async () => {
           Simply pnpm/npm/yarn install the package.
         </div>
 
-        <div class="border rounded-lg shadow-sm my-6 overflow-hidden">
+        <div class="text-sm border rounded-lg shadow-sm my-6 overflow-hidden">
           <div
             class="flex justify-between items-center p-2 border-b bg-neutral-50"
           >
@@ -72,12 +88,7 @@ const copyToInstallText = async () => {
             </button>
           </div>
 
-          <code class="overflow-auto">
-            <p class="p-4 text-xs">
-              <span class="text-[#7548c3]">pnpm</span>
-              <span class="text-neutral-600"> i minimal-carousel</span>
-            </p>
-          </code>
+          <pre class="p-2" v-html="highlightedCode" />
         </div>
       </div>
 
