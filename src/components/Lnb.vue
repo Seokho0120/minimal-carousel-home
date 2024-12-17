@@ -38,55 +38,55 @@ const categories = ref([
       },
       // {
       //   name: 'showPrevButton',
-      //   path: 'docs/showPrevButton', // showPrevButton에 대한 경로
+      //   path: 'docs/showPrevButton',
       // },
       // {
       //   name: 'showNextButton',
-      //   path: 'docs/showNextButton', // showNextButton에 대한 경로
+      //   path: 'docs/showNextButton',
       // },
       // {
       //   name: 'pagination',
-      //   path: 'docs/pagination', // pagination에 대한 경로
+      //   path: 'docs/pagination',
       // },
       // {
       //   name: 'scrollbar',
-      //   path: 'docs/scrollbar', // scrollbar에 대한 경로
+      //   path: 'docs/scrollbar',
       // },
       // {
       //   name: 'autoPlay',
-      //   path: 'docs/autoPlay', // autoPlay에 대한 경로
+      //   path: 'docs/autoPlay',
       // },
       // {
       //   name: 'autoPlayDuration',
-      //   path: 'docs/autoPlayDuration', // autoPlayDuration에 대한 경로
+      //   path: 'docs/autoPlayDuration',
       // },
       // {
       //   name: 'disableOnInteraction',
-      //   path: 'docs/disableOnInteraction', // disableOnInteraction에 대한 경로
+      //   path: 'docs/disableOnInteraction',
       // },
       // {
       //   name: 'pauseOnMouseEnter',
-      //   path: 'docs/pauseOnMouseEnter', // pauseOnMouseEnter에 대한 경로
+      //   path: 'docs/pauseOnMouseEnter',
       // },
       // {
       //   name: 'stopOnLastSlide',
-      //   path: 'docs/stopOnLastSlide', // stopOnLastSlide에 대한 경로
+      //   path: 'docs/stopOnLastSlide',
       // },
       // {
       //   name: 'effectFade',
-      //   path: 'docs/effectFade', // effectFade에 대한 경로
+      //   path: 'docs/effectFade',
       // },
       // {
       //   name: 'keyboardControl',
-      //   path: 'docs/keyboardControl', // keyboardControl에 대한 경로
+      //   path: 'docs/keyboardControl',
       // },
       // {
       //   name: 'parallax',
-      //   path: 'docs/parallax', // parallax에 대한 경로
+      //   path: 'docs/parallax',
       // },
       // {
       //   name: 'contents',
-      //   path: 'docs/contents', // contents에 대한 경로
+      //   path: 'docs/contents',
       // },
     ],
   },

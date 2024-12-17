@@ -4,7 +4,21 @@ import { toast } from 'vue-sonner';
 import { createHighlighter } from 'shiki';
 
 const installCode = `pnpm i minimal-carousel`;
-const usageCode = `import { MinimalCarousel } from "minimal-carousel";
+// const usageCode = `import { MinimalCarousel } from "minimal-carousel";
+// import "minimal-carousel/minimal-carousel.css";
+
+// const TEST = [
+//   { link: 'test1.jpg', id: 1, name: "1" },
+//   { link: 'test2.jpg', id: 2, name: "2" },
+//   { link: 'test3.jpg', id: 3, name: "3" },
+// ];
+
+// <MinimalCarousel :imageItems="TEST"/>
+// `;
+
+const usageCode = `
+<script setup lang='ts'>
+import { MinimalCarousel } from "minimal-carousel";
 import "minimal-carousel/minimal-carousel.css";
 
 const TEST = [
@@ -12,8 +26,11 @@ const TEST = [
   { link: 'test2.jpg', id: 2, name: "2" },
   { link: 'test3.jpg', id: 3, name: "3" },
 ];
+<\/script>
 
-<MinimalCarousel :imageItems="TEST"/>
+<template>
+  <MinimalCarousel :imageItems="TEST"/>
+<\/template>
 `;
 
 const highlightedInstallCode = ref('');
@@ -22,7 +39,7 @@ const highlightedUsageCode = ref('');
 onMounted(async () => {
   const highlighter = await createHighlighter({
     themes: ['github-light'],
-    langs: ['bash'],
+    langs: ['bash', 'vue'],
   });
 
   highlightedInstallCode.value = highlighter.codeToHtml(installCode, {
@@ -31,7 +48,7 @@ onMounted(async () => {
   });
 
   highlightedUsageCode.value = highlighter.codeToHtml(usageCode, {
-    lang: 'bash',
+    lang: 'vue',
     theme: 'github-light',
   });
 });

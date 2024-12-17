@@ -1,8 +1,83 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { MinimalCarousel } from 'minimal-carousel';
+import 'minimal-carousel/minimal-carousel.css';
+import { createHighlighter } from 'shiki';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { toast } from 'vue-sonner';
 
+const test11 = ref(false);
+
+const installCode = `pnpm i minimal-carousel`;
+const usageCode = computed(
+  () => `
+<script setup lang='ts'>
+import { MinimalCarousel } from "minimal-carousel";
+import "minimal-carousel/minimal-carousel.css";
+
+const TEST = [
+  { link: 'test1.jpg', id: 1, name: "1" },
+  { link: 'test2.jpg', id: 2, name: "2" },
+  { link: 'test3.jpg', id: 3, name: "3" },
+];
+<\/script>
+
+<template>
+  <MinimalCarousel :imageItems="TEST" ${test11.value ? 'pagination' : ''}/>
+<\/template>
+`,
+);
+
+const highlightedInstallCode = ref('');
+const highlightedUsageCode = ref('');
+
+const highlighter = ref();
+
+watch(usageCode, () => {
+  highlightedUsageCode.value = highlighter.value.codeToHtml(usageCode.value, {
+    lang: 'vue',
+    theme: 'github-light',
+  });
+});
+
+onMounted(async () => {
+  highlighter.value = await createHighlighter({
+    themes: ['github-light'],
+    langs: ['bash', 'vue'],
+  });
+
+  highlightedInstallCode.value = highlighter.value.codeToHtml(installCode, {
+    lang: 'bash',
+    theme: 'github-light',
+  });
+
+  highlightedUsageCode.value = highlighter.value.codeToHtml(usageCode.value, {
+    lang: 'vue',
+    theme: 'github-light',
+  });
+});
+
+import test1 from '../assets/Abstract Wavy Sculptures.jpeg';
+import test2 from '../assets/859-536x354.jpg';
+import test3 from '../assets/Translucent Trio_ Fluid Earth and Fire.jpeg';
+
+const TEST = [
+  {
+    link: test1,
+    id: 1,
+    name: '1',
+  },
+  {
+    link: test2,
+    id: 2,
+    name: '2',
+  },
+  {
+    link: test3,
+    id: 3,
+    name: '3',
+  },
+];
 const router = useRouter();
 
 const installText = ref('pnpm i minimal-carousel');
@@ -13,12 +88,17 @@ const copyToInstallText = async () => {
 };
 
 const goToDocs = () => {
+  // a, router-link
   router.push('/docs/getting-started');
 };
 
 const goToGithub = () => {
   window.open('https://github.com/Seokho0120/minimal-carousel', '_blank');
 };
+
+function test22() {
+  test11.value = !test11.value;
+}
 </script>
 
 <template>
@@ -29,10 +109,10 @@ const goToGithub = () => {
       <h1 class="text-5xl font-bold text-center text-neutral-900">
         Minimal Carousel
       </h1>
-      <h2 class="text-center text-lg text-neutral-900">
+      <p class="text-center text-lg text-neutral-900">
         A user-friendly carousel library with essential features for quick
         implementation.
-      </h2>
+      </p>
 
       <div class="flex gap-2">
         <button
@@ -49,6 +129,11 @@ const goToGithub = () => {
           Github
         </button>
       </div>
+
+      <MinimalCarousel :imageItems="TEST" :pagination="test11" />
+      <button @click="test22">test</button>
+
+      <pre class="p-2" v-html="highlightedUsageCode" />
 
       <div class="flex flex-col gap-14 mt-14 w-full">
         <div>
