@@ -16,6 +16,55 @@ const installCode = `pnpm i minimal-carousel`;
 // <MinimalCarousel :imageItems="TEST"/>
 // `;
 
+// const usageCode = computed(
+//   () => `
+// <script setup lang='ts'>
+// import { MinimalCarousel } from "minimal-carousel";
+// import "minimal-carousel/minimal-carousel.css";
+
+// const TEST = [
+//   { link: 'test1.jpg', id: 1, name: "1" },
+//   { link: 'test2.jpg', id: 2, name: "2" },
+//   { link: 'test3.jpg', id: 3, name: "3" },
+// ];
+// <\/script>
+
+// <template>
+//   <MinimalCarousel :imageItems="TEST" ${test11.value ? 'pagination' : ''}/>
+// <\/template>
+// `,
+// );
+
+// const highlightedInstallCode = ref('');
+// const highlightedUsageCode = ref('');
+
+// const highlighter = ref();
+
+// watch(usageCode, () => {
+//   highlightedUsageCode.value = highlighter.value.codeToHtml(usageCode.value, {
+//     lang: 'vue',
+//     theme: 'github-light',
+//   });
+// });
+
+// onMounted(async () => {
+//   highlighter.value = await createHighlighter({
+//     themes: ['github-light'],
+//     langs: ['bash', 'vue'],
+//   });
+
+//   highlightedInstallCode.value = highlighter.value.codeToHtml(installCode, {
+//     lang: 'bash',
+//     theme: 'github-light',
+//   });
+
+//   highlightedUsageCode.value = highlighter.value.codeToHtml(usageCode.value, {
+//     lang: 'vue',
+//     theme: 'github-light',
+//   });
+// });
+//       <pre class="p-2" v-html="highlightedUsageCode" />
+
 const usageCode = `
 <script setup lang='ts'>
 import { MinimalCarousel } from "minimal-carousel";

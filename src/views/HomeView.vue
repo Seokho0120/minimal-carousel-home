@@ -1,84 +1,42 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import { toast } from 'vue-sonner';
 import { MinimalCarousel } from 'minimal-carousel';
 import 'minimal-carousel/minimal-carousel.css';
-import { createHighlighter } from 'shiki';
-import { computed, onMounted, ref, watch } from 'vue';
-import { useRouter } from 'vue-router';
-import { toast } from 'vue-sonner';
 
-const test11 = ref(false);
+import img1 from '../assets/images/img1.jpg';
+import img2 from '../assets/images/img2.jpg';
+import img3 from '../assets/images/img3.jpg';
+import img4 from '../assets/images/img4.jpg';
+import img5 from '../assets/images/img5.jpg';
 
-const installCode = `pnpm i minimal-carousel`;
-const usageCode = computed(
-  () => `
-<script setup lang='ts'>
-import { MinimalCarousel } from "minimal-carousel";
-import "minimal-carousel/minimal-carousel.css";
-
-const TEST = [
-  { link: 'test1.jpg', id: 1, name: "1" },
-  { link: 'test2.jpg', id: 2, name: "2" },
-  { link: 'test3.jpg', id: 3, name: "3" },
-];
-<\/script>
-
-<template>
-  <MinimalCarousel :imageItems="TEST" ${test11.value ? 'pagination' : ''}/>
-<\/template>
-`,
-);
-
-const highlightedInstallCode = ref('');
-const highlightedUsageCode = ref('');
-
-const highlighter = ref();
-
-watch(usageCode, () => {
-  highlightedUsageCode.value = highlighter.value.codeToHtml(usageCode.value, {
-    lang: 'vue',
-    theme: 'github-light',
-  });
-});
-
-onMounted(async () => {
-  highlighter.value = await createHighlighter({
-    themes: ['github-light'],
-    langs: ['bash', 'vue'],
-  });
-
-  highlightedInstallCode.value = highlighter.value.codeToHtml(installCode, {
-    lang: 'bash',
-    theme: 'github-light',
-  });
-
-  highlightedUsageCode.value = highlighter.value.codeToHtml(usageCode.value, {
-    lang: 'vue',
-    theme: 'github-light',
-  });
-});
-
-import test1 from '../assets/Abstract Wavy Sculptures.jpeg';
-import test2 from '../assets/859-536x354.jpg';
-import test3 from '../assets/Translucent Trio_ Fluid Earth and Fire.jpeg';
-
-const TEST = [
+const IMAGES = [
   {
-    link: test1,
+    link: img1,
     id: 1,
     name: '1',
   },
   {
-    link: test2,
+    link: img2,
     id: 2,
     name: '2',
   },
   {
-    link: test3,
+    link: img3,
     id: 3,
     name: '3',
   },
+  {
+    link: img4,
+    id: 4,
+    name: '4',
+  },
+  {
+    link: img5,
+    id: 5,
+    name: '5',
+  },
 ];
-const router = useRouter();
 
 const installText = ref('pnpm i minimal-carousel');
 
@@ -86,19 +44,6 @@ const copyToInstallText = async () => {
   await navigator.clipboard.writeText(installText.value);
   toast.success(`Copy code: ${installText.value}`);
 };
-
-const goToDocs = () => {
-  // a, router-link
-  router.push('/docs/getting-started');
-};
-
-const goToGithub = () => {
-  window.open('https://github.com/Seokho0120/minimal-carousel', '_blank');
-};
-
-function test22() {
-  test11.value = !test11.value;
-}
 </script>
 
 <template>
@@ -115,27 +60,28 @@ function test22() {
       </p>
 
       <div class="flex gap-2">
-        <button
-          @click="goToDocs"
-          class="bg-neutral-900 hover:bg-neutral-800 text-neutral-50 text-xs px-8 font-semibold rounded-md w-[152px] h-[42px]"
+        <router-link
+          :to="'/docs/getting-started'"
+          class="flex items-center justify-center px-12 py-3 bg-neutral-900 hover:bg-neutral-800 text-neutral-50 text-xs font-semibold rounded-md"
         >
           Document
-        </button>
+        </router-link>
 
-        <button
-          @click="goToGithub"
-          class="bg-gradient-to-r from-white to-neutral-100 text-neutral-900 text-xs px-8 font-semibold rounded-md w-[152px] h-[42px] shadow-md border border-neutral-100 hover:bg-gradient-to-br hover:from-neutral-100 hover:to-white"
+        <a
+          href="https://github.com/Seokho0120/minimal-carousel"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-center px-12 bg-gradient-to-r from-white to-neutral-100 text-neutral-900 text-xs font-semibold rounded-md shadow-md border border-neutral-100 hover:bg-gradient-to-br hover:from-neutral-100 hover:to-white"
         >
           Github
-        </button>
+        </a>
       </div>
 
-      <MinimalCarousel :imageItems="TEST" :pagination="test11" />
-      <button @click="test22">test</button>
+      <div class="mt-10">
+        <MinimalCarousel :imageItems="IMAGES" />
+      </div>
 
-      <pre class="p-2" v-html="highlightedUsageCode" />
-
-      <div class="flex flex-col gap-14 mt-14 w-full">
+      <div class="flex flex-col gap-14 mt-10 w-full">
         <div>
           <h2 class="pb-3">Installation</h2>
           <code
