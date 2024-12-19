@@ -78,7 +78,7 @@ const copyToInstallText = async () => {
       </div>
 
       <div class="mt-10">
-        <MinimalCarousel :imageItems="IMAGES" />
+        <MinimalCarousel :imageItems="IMAGES" autoPlay />
       </div>
 
       <div class="flex flex-col gap-14 mt-10 w-full">

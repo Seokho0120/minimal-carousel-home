@@ -11,83 +11,84 @@ const router = createRouter({
     {
       path: '/docs',
       name: 'docs',
-      component: () => import('@/views/docs/docs.vue'), // docs 페이지
+      component: () => import('@/views/docs/docs.vue'),
       children: [
         {
-          name: 'Getting Started',
+          name: 'getting started',
           path: 'getting-started',
-          component: () => import('@/components/GettingStarted.vue'), // Getting Started 페이지
+          component: () => import('@/components/GettingStarted.vue'),
         },
         {
           name: 'imageItems',
           path: 'image-items',
-          component: () => import('@/components/ImageItems.vue'), // imageItems 페이지
+          component: () => import('@/components/ImageItems.vue'),
         },
+
+        // TODO:
         // {
-        //   path: 'showPrevButton',
         //   name: 'showPrevButton',
-        //   component: () => import('@/views/docs/ShowPrevButton.vue'), // showPrevButton 페이지
+        //   path: 'show-prev-button',
+        //   component: () => import('@/components/ShowPrevButton.vue'),
         // },
         // {
-        //   path: 'showNextButton',
         //   name: 'showNextButton',
-        //   component: () => import('@/views/docs/ShowNextButton.vue'), // showNextButton 페이지
+        //   path: 'show-next-button',
+        //   component: () => import('@/components/ShowNextButton.vue'),
         // },
-        // // 나머지 Props에 대한 페이지 추가
         // {
-        //   path: 'pagination',
         //   name: 'pagination',
-        //   component: () => import('@/views/docs/Pagination.vue'), // pagination 페이지
+        //   path: 'pagination',
+        //   component: () => import('@/components/Pagination.vue'),
         // },
         // {
-        //   path: 'scrollbar',
         //   name: 'scrollbar',
-        //   component: () => import('@/views/docs/Scrollbar.vue'), // scrollbar 페이지
+        //   path: 'scrollbar',
+        //   component: () => import('@/components/Scrollbar.vue'),
         // },
         // {
-        //   path: 'autoPlay',
         //   name: 'autoPlay',
-        //   component: () => import('@/views/docs/AutoPlay.vue'), // autoPlay 페이지
+        //   path: 'auto-play',
+        //   component: () => import('@/components/AutoPlay.vue'),
         // },
         // {
-        //   path: 'autoPlayDuration',
         //   name: 'autoPlayDuration',
-        //   component: () => import('@/views/docs/AutoPlayDuration.vue'), // autoPlayDuration 페이지
+        //   path: 'auto-play-duration',
+        //   component: () => import('@/components/AutoPlayDuration.vue'),
         // },
         // {
-        //   path: 'disableOnInteraction',
         //   name: 'disableOnInteraction',
-        //   component: () => import('@/views/docs/DisableOnInteraction.vue'), // disableOnInteraction 페이지
+        //   path: 'disable-on-interaction',
+        //   component: () => import('@/components/DisableOnInteraction.vue'),
         // },
         // {
-        //   path: 'pauseOnMouseEnter',
         //   name: 'pauseOnMouseEnter',
-        //   component: () => import('@/views/docs/PauseOnMouseEnter.vue'), // pauseOnMouseEnter 페이지
+        //   path: 'pause-on-mouse-enter',
+        //   component: () => import('@/components/PauseOnMouseEnter.vue'),
         // },
         // {
-        //   path: 'stopOnLastSlide',
         //   name: 'stopOnLastSlide',
-        //   component: () => import('@/views/docs/StopOnLastSlide.vue'), // stopOnLastSlide 페이지
+        //   path: 'stop-on-last-slide',
+        //   component: () => import('@/components/StopOnLastSlide.vue'),
         // },
         // {
-        //   path: 'effectFade',
         //   name: 'effectFade',
-        //   component: () => import('@/views/docs/EffectFade.vue'), // effectFade 페이지
+        //   path: 'effect-fade',
+        //   component: () => import('@/components/EffectFade.vue'),
         // },
         // {
-        //   path: 'keyboardControl',
         //   name: 'keyboardControl',
-        //   component: () => import('@/views/docs/KeyboardControl.vue'), // keyboardControl 페이지
+        //   path: 'keyboard-control',
+        //   component: () => import('@/components/KeyboardControl.vue'),
         // },
         // {
-        //   path: 'parallax',
         //   name: 'parallax',
-        //   component: () => import('@/views/docs/Parallax.vue'), // parallax 페이지
+        //   path: 'parallax',
+        //   component: () => import('@/components/Parallax.vue'),
         // },
         // {
-        //   path: 'contents',
         //   name: 'contents',
-        //   component: () => import('@/views/docs/Contents.vue'), // contents 페이지
+        //   path: 'contents',
+        //   component: () => import('@/components/Contents.vue'),
         // },
       ],
     },

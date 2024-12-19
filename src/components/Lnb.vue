@@ -15,6 +15,7 @@ const categories = ref([
     category: '',
     items: [
       {
+        lnbName: 'Home',
         name: 'home',
         path: '/',
       },
@@ -24,7 +25,8 @@ const categories = ref([
     category: 'Basics',
     items: [
       {
-        name: 'Getting Started',
+        lnbName: 'Getting Started',
+        name: 'getting started',
         path: 'getting-started',
       },
     ],
@@ -32,62 +34,50 @@ const categories = ref([
   {
     category: 'API',
     items: [
-      {
-        name: 'imageItems',
-        path: 'image-items',
-      },
+      { lnbName: 'ImageItems', name: 'imageItems', path: 'image-items' },
+
+      // TODO:
       // {
+      //   lnbName: 'ShowPrevButton',
       //   name: 'showPrevButton',
-      //   path: 'docs/showPrevButton',
+      //   path: 'show-prev-button',
       // },
       // {
+      //   lnbName: 'ShowNextButton',
       //   name: 'showNextButton',
-      //   path: 'docs/showNextButton',
+      //   path: 'show-next-button',
       // },
+      // { lnbName: 'Pagination', name: 'pagination', path: 'pagination' },
+      // { lnbName: 'Scrollbar', name: 'scrollbar', path: 'scrollbar' },
+      // { lnbName: 'AutoPlay', name: 'autoPlay', path: 'auto-play' },
       // {
-      //   name: 'pagination',
-      //   path: 'docs/pagination',
-      // },
-      // {
-      //   name: 'scrollbar',
-      //   path: 'docs/scrollbar',
-      // },
-      // {
-      //   name: 'autoPlay',
-      //   path: 'docs/autoPlay',
-      // },
-      // {
+      //   lnbName: 'AutoPlayDuration',
       //   name: 'autoPlayDuration',
-      //   path: 'docs/autoPlayDuration',
+      //   path: 'auto-play-duration',
       // },
       // {
+      //   lnbName: 'DisableOnInteraction',
       //   name: 'disableOnInteraction',
-      //   path: 'docs/disableOnInteraction',
+      //   path: 'disable-on-interaction',
       // },
       // {
+      //   lnbName: 'PauseOnMouseEnter',
       //   name: 'pauseOnMouseEnter',
-      //   path: 'docs/pauseOnMouseEnter',
+      //   path: 'pause-on-mouse-enter',
       // },
       // {
+      //   lnbName: 'StopOnLastSlide',
       //   name: 'stopOnLastSlide',
-      //   path: 'docs/stopOnLastSlide',
+      //   path: 'stop-on-last-slide',
       // },
+      // { lnbName: 'EffectFade', name: 'effectFade', path: 'effect-fade' },
       // {
-      //   name: 'effectFade',
-      //   path: 'docs/effectFade',
-      // },
-      // {
+      //   lnbName: 'KeyboardControl',
       //   name: 'keyboardControl',
-      //   path: 'docs/keyboardControl',
+      //   path: 'keyboard-control',
       // },
-      // {
-      //   name: 'parallax',
-      //   path: 'docs/parallax',
-      // },
-      // {
-      //   name: 'contents',
-      //   path: 'docs/contents',
-      // },
+      // { lnbName: 'Parallax', name: 'parallax', path: 'parallax' },
+      // { lnbName: 'Contents', name: 'contents', path: 'contents' },
     ],
   },
 ]);
