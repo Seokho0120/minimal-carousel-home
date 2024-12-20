@@ -7,12 +7,16 @@ const installCode = `pnpm i minimal-carousel`;
 const usageCode = `<script setup lang='ts'>
 import { MinimalCarousel } from "minimal-carousel";
 import "minimal-carousel/minimal-carousel.css";
+import img1 from '../img1.jpg';
+import img2 from '../img2.jpg';
+import img3 from '../img3.jpg';
 
-const TEST = [
-  { link: 'test1.jpg', id: 1, name: "1" },
-  { link: 'test2.jpg', id: 2, name: "2" },
-  { link: 'test3.jpg', id: 3, name: "3" },
+const IMAGES = [
+  { link: 'img1.jpg' },
+  { link: 'img2.jpg' },
+  { link: 'img3.jpg' },
 ];
+
 <\/script>
 
 <template>
@@ -48,7 +52,8 @@ const copyToInstallText = async () => {
 
 const copyToUsageText = async () => {
   await navigator.clipboard.writeText(usageCode);
-  toast.success(`Copied code: ${usageCode}`);
+  toast.success(`Copy code!`);
+  // toast.success(`Copied code: ${usageCode}`);
 };
 </script>
 
@@ -93,8 +98,10 @@ const copyToUsageText = async () => {
 
       <!-- Usage -->
       <div class="mt-12 w-full">
-        <h2 class="font-semibold text-xl mb-4 text-neutral-800">Usage</h2>
-        <div class="text-neutral-500">Add the following code to your App</div>
+        <h2 class="font-semibold text-xl mb-4 text-neutral-800">
+          Add MinimalCarousel to your app
+        </h2>
+        <div class="text-neutral-500">It can be placed anywhere.</div>
 
         <div class="text-sm border rounded-lg shadow-sm my-6 overflow-hidden">
           <div

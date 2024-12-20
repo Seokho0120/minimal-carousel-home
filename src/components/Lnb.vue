@@ -107,7 +107,7 @@ const categories = ref([
                 : 'hover:bg-el-hover-bg',
             ]"
           >
-            {{ item.name }}
+            {{ item.lnbName }}
           </RouterLink>
         </li>
       </ul>
