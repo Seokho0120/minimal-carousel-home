@@ -45,8 +45,8 @@ const categories = ref([
         name: 'showNextButton',
         path: 'show-next-button',
       },
+      { lnbName: 'Pagination', name: 'pagination', path: 'pagination' },
       // TODO:
-      // { lnbName: 'Pagination', name: 'pagination', path: 'pagination' },
       // { lnbName: 'Scrollbar', name: 'scrollbar', path: 'scrollbar' },
       // { lnbName: 'AutoPlay', name: 'autoPlay', path: 'auto-play' },
       // {

@@ -17,6 +17,7 @@ declare module 'vue' {
     ImageItems: typeof import('./src/components/ImageItems.vue')['default']
     'IMynaui:terminalSolid': typeof import('~icons/mynaui/terminal-solid')['default']
     Lnb: typeof import('./src/components/Lnb.vue')['default']
+    Pagination: typeof import('./src/components/Pagination.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ShowNextButton: typeof import('./src/components/ShowNextButton.vue')['default']

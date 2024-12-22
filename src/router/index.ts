@@ -33,13 +33,13 @@ const router = createRouter({
           path: 'show-next-button',
           component: () => import('@/components/ShowNextButton.vue'),
         },
+        {
+          name: 'pagination',
+          path: 'pagination',
+          component: () => import('@/components/Pagination.vue'),
+        },
 
         // TODO:
-        // {
-        //   name: 'pagination',
-        //   path: 'pagination',
-        //   component: () => import('@/components/Pagination.vue'),
-        // },
         // {
         //   name: 'scrollbar',
         //   path: 'scrollbar',
