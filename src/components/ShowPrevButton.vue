@@ -42,8 +42,6 @@ const typeCode = `showPrevButton: boolean;`;
 const exampleShortCode = `<MinimalCarousel showPrevButton/>`;
 const exampleShortCode2 = `<MinimalCarousel :showPrevButton="false"/>`;
 const exampleFullCode = `<script setup lang='ts'>
-import { MinimalCarousel } from "minimal-carousel";
-import "minimal-carousel/minimal-carousel.css";
 import img1 from '../img1.jpg';
 import img2 from '../img2.jpg';
 import img3 from '../img3.jpg';
@@ -69,8 +67,6 @@ const customShortCode = `<MinimalCarousel :imageItems="IMAGES">
 </MinimalCarousel>
 `;
 const customCode = `<script setup lang='ts'>
-import { MinimalCarousel } from "minimal-carousel";
-import "minimal-carousel/minimal-carousel.css";
 import img1 from '../img1.jpg';
 import img2 from '../img2.jpg';
 import img3 from '../img3.jpg';

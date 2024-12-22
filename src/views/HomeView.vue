@@ -39,7 +39,8 @@ const installText = ref('pnpm i minimal-carousel');
 
 const copyToInstallText = async () => {
   await navigator.clipboard.writeText(installText.value);
-  toast.success(`Copy code: ${installText.value}`);
+  toast.success(`Copy code!`);
+  // toast.success(`Copy code: ${installText.value}`);
 };
 </script>
 
