@@ -36,6 +36,7 @@ const IMAGES = [
   },
 ];
 const isFullAndShort = ref(true);
+const isCustomFullAndShort = ref(true);
 
 const typeCode = `showPrevButton: boolean;`;
 const exampleShortCode = `<MinimalCarousel showPrevButton/>`;
@@ -59,16 +60,52 @@ const IMAGES = [
   <MinimalCarousel :imageItems="IMAGES" showPrevButton/>
 <\/template>
 `;
+const customShortCode = `<MinimalCarousel :imageItems="IMAGES">
+  <template #prev-btn="{ defaultClass, goToPrev }">
+    <span @click="goToPrev" class="text-white" :class="defaultClass">
+      prev button
+    </span>
+  </template>
+</MinimalCarousel>
+`;
+const customCode = `<script setup lang='ts'>
+import { MinimalCarousel } from "minimal-carousel";
+import "minimal-carousel/minimal-carousel.css";
+import img1 from '../img1.jpg';
+import img2 from '../img2.jpg';
+import img3 from '../img3.jpg';
+
+const IMAGES = [
+  { link: 'img1.jpg', id: 1, name: 'img1' },
+  { link: 'img2.jpg', id: 2, name: 'img2' },
+  { link: 'img3.jpg', id: 3, name: 'img3' },
+];
+<\/script>
+
+<template>
+  <MinimalCarousel :imageItems="IMAGES">
+    <template #prev-btn="{ defaultClass, goToPrev }">
+      <span @click="goToPrev" class="text-white" :class="defaultClass">
+        prev button
+      </span>
+    </template>
+  </MinimalCarousel>
+<\/template>
+`;
+const defaultCode = `defaultClass="absolute left-4 top-1/2"`;
 
 const highlightedTypeCode = ref('');
 const highlightedExampleFullCode = ref('');
 const highlightedExampleShortCode = ref('');
 const highlightedExampleShortCode2 = ref('');
+const highlightedCustomCode = ref('');
+const highlightedCustomShortCode = ref('');
+const highlightedDefaultClassCode = ref('');
 
 onMounted(async () => {
   const highlighter = await createHighlighter({
     themes: ['github-light'],
-    langs: ['vue', 'tsx'],
+    langs: ['vue', 'tsx', 'bash', 'jsx'],
   });
 
   highlightedTypeCode.value = highlighter.codeToHtml(typeCode, {
@@ -93,6 +130,21 @@ onMounted(async () => {
     lang: 'vue',
     theme: 'github-light',
   });
+
+  highlightedCustomShortCode.value = highlighter.codeToHtml(customShortCode, {
+    lang: 'vue',
+    theme: 'github-light',
+  });
+
+  highlightedCustomCode.value = highlighter.codeToHtml(customCode, {
+    lang: 'vue',
+    theme: 'github-light',
+  });
+
+  highlightedDefaultClassCode.value = highlighter.codeToHtml(defaultCode, {
+    lang: 'vue',
+    theme: 'github-light',
+  });
 });
 
 const copyToExampleShortText = async () => {
@@ -107,6 +159,16 @@ const copyToExampleShortText2 = async () => {
 
 const copyToExampleFullText = async () => {
   await navigator.clipboard.writeText(exampleFullCode);
+  toast.success(`Copy code!`);
+};
+
+const copyToCustomShortText = async () => {
+  await navigator.clipboard.writeText(customShortCode);
+  toast.success(`Copy code!`);
+};
+
+const copyToCustomFullText = async () => {
+  await navigator.clipboard.writeText(customCode);
   toast.success(`Copy code!`);
 };
 </script>
@@ -143,7 +205,9 @@ const copyToExampleFullText = async () => {
 
           <pre class="p-4" v-html="highlightedTypeCode" />
         </div>
+      </div>
 
+      <div class="mt-12 w-full">
         <h2 class="font-semibold text-xl mb-4 text-neutral-800">Example</h2>
         <div class="text-neutral-500">
           The default value of showPrevButton is true, and it will always be
@@ -228,6 +292,99 @@ const copyToExampleFullText = async () => {
           </div>
 
           <pre class="p-4" v-html="highlightedExampleShortCode2" />
+        </div>
+      </div>
+
+      <div class="mt-12 w-full">
+        <h2 class="font-bold text-xl mb-4 text-neutral-800">Custom</h2>
+        <div class="text-neutral-500">
+          MinimalCarousel provides the ability to customize buttons. This allows
+          users to implement buttons with their own styles and behaviors instead
+          of using the default buttons.
+        </div>
+
+        <div class="mt-2 p-6 border-[1px] rounded-xl">
+          <MinimalCarousel :imageItems="IMAGES" class="rounded-xl">
+            <template #prev-btn="{ defaultClass, goToPrev }">
+              <span @click="goToPrev" class="text-white" :class="defaultClass">
+                prev button
+              </span>
+            </template>
+          </MinimalCarousel>
+        </div>
+
+        <div class="text-sm border rounded-lg shadow-sm my-6 overflow-hidden">
+          <div
+            class="flex justify-between items-center p-2 border-b bg-neutral-50"
+          >
+            <span class="text-xs flex items-center gap-2">
+              <i-mynaui:terminal-solid class="text-neutral-400" />
+              <span class="text-neutral-500">Example</span>
+            </span>
+
+            <div class="flex items-center gap-2">
+              <button @click="isCustomFullAndShort = !isCustomFullAndShort">
+                <i-heroicons:code-bracket-square
+                  class="text-neutral-600 hover:text-neutral-400"
+                />
+              </button>
+
+              <button
+                v-if="isCustomFullAndShort"
+                @click="copyToCustomShortText"
+              >
+                <i-heroicons:square-2-stack
+                  class="text-neutral-600 hover:text-neutral-400"
+                />
+              </button>
+
+              <button v-else @click="copyToCustomFullText">
+                <i-heroicons:square-2-stack
+                  class="text-neutral-600 hover:text-neutral-400"
+                />
+              </button>
+            </div>
+          </div>
+
+          <pre
+            v-if="isCustomFullAndShort"
+            class="p-4"
+            v-html="highlightedCustomShortCode"
+          />
+          <pre v-else class="p-4" v-html="highlightedCustomCode" />
+        </div>
+
+        <h3 class="font-bold text-xl my-4 text-neutral-800">Usage</h3>
+        <div class="text-neutral-500">
+          <p class="font-bold text-neutral-800">#prev-btn</p>
+          <p>
+            This slot can be used to customize the previous button. By defining
+            the content of the slot, you can use a custom button instead of the
+            default provided previous button.
+          </p>
+
+          <div class="flex flex-col">
+            <p class="font-bold text-neutral-800 mt-6 mb-2">Properties</p>
+            <p class="font-semibold text-neutral-800 mb-1">defaultClass</p>
+            <p>
+              This is the default button class. You can easily apply styles to
+              the button, and you can also choose to customize it directly
+              without using this class.
+            </p>
+
+            <div
+              class="text-sm border rounded-lg shadow-sm mt-1 mb-6 overflow-hidden"
+            >
+              <pre class="p-4" v-html="highlightedDefaultClassCode" />
+            </div>
+
+            <p class="font-semibold text-neutral-800 mb-1">goToPrev</p>
+            <p>
+              This is a method for showing the previous image. You can call this
+              method when the button is clicked to navigate the carousel to the
+              previous image.
+            </p>
+          </div>
         </div>
       </div>
     </div>
