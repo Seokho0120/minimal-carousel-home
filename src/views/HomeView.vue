@@ -59,7 +59,7 @@ const copyToInstallText = async () => {
       <div class="flex gap-2">
         <router-link
           :to="'/docs/getting-started'"
-          class="flex items-center justify-center px-12 py-3 bg-neutral-900 hover:bg-neutral-800 text-neutral-50 text-xs font-semibold rounded-md"
+          class="flex items-center justify-center w-[152px] py-3 bg-neutral-900 hover:bg-neutral-800 text-neutral-50 text-xs font-semibold rounded-md"
         >
           Document
         </router-link>
@@ -68,7 +68,7 @@ const copyToInstallText = async () => {
           href="https://github.com/Seokho0120/minimal-carousel"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center justify-center px-12 bg-gradient-to-r from-white to-neutral-100 text-neutral-900 text-xs font-semibold rounded-md shadow-md border border-neutral-100 hover:bg-gradient-to-br hover:from-neutral-100 hover:to-white"
+          class="flex items-center justify-center w-[152px] py-3 bg-gradient-to-r from-white to-neutral-100 text-neutral-900 text-xs font-semibold rounded-md shadow-md border border-neutral-100 hover:bg-gradient-to-br hover:from-neutral-100 hover:to-white"
         >
           Github
         </a>

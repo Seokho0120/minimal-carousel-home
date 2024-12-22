@@ -93,6 +93,9 @@ const router = createRouter({
       ],
     },
   ],
+  scrollBehavior() {
+    return { top: 0 }; // 항상 페이지 상단으로 스크롤
+  },
 });
 
 export default router;

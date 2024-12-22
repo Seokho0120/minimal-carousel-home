@@ -84,7 +84,7 @@ const categories = ref([
 
 <template>
   <div
-    class="flex flex-col gap-10 bg-neutral-50 py-6 px-4 h-screen w-[240px] border-r border-neutral-300 border-dotted"
+    class="flex flex-col gap-10 bg-neutral-50 py-6 px-4 h-screen w-[240px] border-r border-neutral-300 border-dotted sticky top-0"
   >
     <div v-for="category in categories" :key="category.category">
       <h2 class="text-xs text-neutral-400 mb-2">{{ category.category }}</h2>
