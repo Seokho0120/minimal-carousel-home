@@ -23,14 +23,22 @@ const IMAGES = [
   <MinimalCarousel :imageItems="TEST"/>
 <\/template>
 `;
+const configCode = `import { createApp } from 'vue';
+import { MinimalCarousel } from 'minimal-carousel';
+import 'minimal-carousel/minimal-carousel.css';
+
+const app = createApp(App)
+app.component('MinimalCarousel', MinimalCarousel);
+`;
 
 const highlightedInstallCode = ref('');
 const highlightedUsageCode = ref('');
+const highlightedConfigCode = ref('');
 
 onMounted(async () => {
   const highlighter = await createHighlighter({
     themes: ['github-light'],
-    langs: ['bash', 'vue'],
+    langs: ['bash', 'vue', 'tsx'],
   });
 
   highlightedInstallCode.value = highlighter.codeToHtml(installCode, {
@@ -42,12 +50,23 @@ onMounted(async () => {
     lang: 'vue',
     theme: 'github-light',
   });
+
+  highlightedConfigCode.value = highlighter.codeToHtml(configCode, {
+    lang: 'tsx',
+    theme: 'github-light',
+  });
 });
 
 const copyToInstallText = async () => {
   await navigator.clipboard.writeText(installCode);
   toast.success(`Copy code!`);
   // toast.success(`Copy code: ${installCode}`);
+};
+
+const copyToConfigText = async () => {
+  await navigator.clipboard.writeText(configCode);
+  toast.success(`Copy code!`);
+  // toast.success(`Copied code: ${usageCode}`);
 };
 
 const copyToUsageText = async () => {
@@ -93,6 +112,37 @@ const copyToUsageText = async () => {
           </div>
 
           <pre class="p-4" v-html="highlightedInstallCode" />
+        </div>
+      </div>
+
+      <!-- Configuration -->
+      <div class="mt-12 w-full">
+        <h2 class="font-semibold text-xl mb-4 text-neutral-800">
+          Configuration
+        </h2>
+        <div class="text-neutral-500">
+          MinimalCarousel is a required component that needs to be registered
+          for use globally in your application. By adding this component, the
+          default configuration is set up, allowing you to use it conveniently
+          without affecting other parts of the application.
+        </div>
+
+        <div class="text-sm border rounded-lg shadow-sm my-6 overflow-hidden">
+          <div
+            class="flex justify-between items-center p-2 border-b bg-neutral-50"
+          >
+            <span class="text-xs flex items-center gap-2">
+              <i-heroicons:document-solid class="text-neutral-400" />
+              <span class="text-neutral-500">main.ts</span>
+            </span>
+            <button @click="copyToConfigText">
+              <i-heroicons:square-2-stack
+                class="text-neutral-600 hover:text-neutral-400"
+              />
+            </button>
+          </div>
+
+          <pre class="p-4" v-html="highlightedConfigCode" />
         </div>
       </div>
 

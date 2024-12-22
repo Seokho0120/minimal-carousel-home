@@ -19,5 +19,7 @@ declare module 'vue' {
     Lnb: typeof import('./src/components/Lnb.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ShowNextButton: typeof import('./src/components/ShowNextButton.vue')['default']
+    ShowPrevButton: typeof import('./src/components/ShowPrevButton.vue')['default']
   }
 }

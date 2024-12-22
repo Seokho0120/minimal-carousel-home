@@ -23,18 +23,18 @@ const router = createRouter({
           path: 'image-items',
           component: () => import('@/components/ImageItems.vue'),
         },
+        {
+          name: 'showPrevButton',
+          path: 'show-prev-button',
+          component: () => import('@/components/ShowPrevButton.vue'),
+        },
+        {
+          name: 'showNextButton',
+          path: 'show-next-button',
+          component: () => import('@/components/ShowNextButton.vue'),
+        },
 
         // TODO:
-        // {
-        //   name: 'showPrevButton',
-        //   path: 'show-prev-button',
-        //   component: () => import('@/components/ShowPrevButton.vue'),
-        // },
-        // {
-        //   name: 'showNextButton',
-        //   path: 'show-next-button',
-        //   component: () => import('@/components/ShowNextButton.vue'),
-        // },
         // {
         //   name: 'pagination',
         //   path: 'pagination',
