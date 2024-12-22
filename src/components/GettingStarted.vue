@@ -5,8 +5,6 @@ import { createHighlighter } from 'shiki';
 
 const installCode = `pnpm i minimal-carousel`;
 const usageCode = `<script setup lang='ts'>
-import { MinimalCarousel } from "minimal-carousel";
-import "minimal-carousel/minimal-carousel.css";
 import img1 from '../img1.jpg';
 import img2 from '../img2.jpg';
 import img3 from '../img3.jpg';
@@ -20,7 +18,7 @@ const IMAGES = [
 <\/script>
 
 <template>
-  <MinimalCarousel :imageItems="TEST"/>
+  <MinimalCarousel :imageItems="IMAGES"/>
 <\/template>
 `;
 const configCode = `import { createApp } from 'vue';

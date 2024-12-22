@@ -123,7 +123,7 @@ const copyToExampleFullText = async () => {
           Type of ImageItems
         </h2>
         <div class="text-neutral-500">
-          Link is a required value, while id and name are optional values.
+          link is a required value, while id and name are optional values.
         </div>
 
         <div class="text-sm border rounded-lg shadow-sm my-6 overflow-hidden">
@@ -132,13 +132,8 @@ const copyToExampleFullText = async () => {
           >
             <span class="text-xs flex items-center gap-2">
               <i-mynaui:terminal-solid class="text-neutral-400" />
-              <span class="text-neutral-500">Terminal</span>
+              <span class="text-neutral-500">Type</span>
             </span>
-            <button @click="copyToTypeText">
-              <i-heroicons:square-2-stack
-                class="text-neutral-600 hover:text-neutral-400"
-              />
-            </button>
           </div>
 
           <pre class="p-4" v-html="highlightedTypeCode" />
@@ -161,8 +156,8 @@ const copyToExampleFullText = async () => {
             class="flex justify-between items-center p-2 border-b bg-neutral-50"
           >
             <span class="text-xs flex items-center gap-2">
-              <i-mynaui:terminal-solid class="text-neutral-400" />
-              <span class="text-neutral-500">Example code</span>
+              <i-heroicons:document-solid class="text-neutral-400" />
+              <span class="text-neutral-500">Example</span>
             </span>
 
             <div class="flex items-center gap-2">

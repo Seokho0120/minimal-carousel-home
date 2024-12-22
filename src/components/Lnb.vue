@@ -35,18 +35,17 @@ const categories = ref([
     category: 'API',
     items: [
       { lnbName: 'ImageItems', name: 'imageItems', path: 'image-items' },
-
+      {
+        lnbName: 'ShowPrevButton',
+        name: 'showPrevButton',
+        path: 'show-prev-button',
+      },
+      {
+        lnbName: 'ShowNextButton',
+        name: 'showNextButton',
+        path: 'show-next-button',
+      },
       // TODO:
-      // {
-      //   lnbName: 'ShowPrevButton',
-      //   name: 'showPrevButton',
-      //   path: 'show-prev-button',
-      // },
-      // {
-      //   lnbName: 'ShowNextButton',
-      //   name: 'showNextButton',
-      //   path: 'show-next-button',
-      // },
       // { lnbName: 'Pagination', name: 'pagination', path: 'pagination' },
       // { lnbName: 'Scrollbar', name: 'scrollbar', path: 'scrollbar' },
       // { lnbName: 'AutoPlay', name: 'autoPlay', path: 'auto-play' },
