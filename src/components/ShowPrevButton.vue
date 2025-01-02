@@ -8,6 +8,7 @@ import img3 from '../assets/images/img3.jpg';
 import img4 from '../assets/images/img4.jpg';
 import img5 from '../assets/images/img5.jpg';
 import DocIntro from './docitems/DocIntro.vue';
+import DocItem from './docitems/DocItem.vue';
 
 const IMAGES = [
   {
@@ -37,7 +38,6 @@ const IMAGES = [
   },
 ];
 const isFullAndShort = ref(true);
-const isCustomFullAndShort = ref(true);
 
 const typeCode = `showPrevButton: boolean;`;
 const exampleShortCode = `<MinimalCarousel showPrevButton/>`;
@@ -59,6 +59,7 @@ const IMAGES = [
   <MinimalCarousel :imageItems="IMAGES" showPrevButton/>
 <\/template>
 `;
+
 const customShortCode = `<MinimalCarousel :imageItems="IMAGES">
   <template #prev-btn="{ defaultClass, goToPrev }">
     <span @click="goToPrev" class="text-white" :class="defaultClass">
@@ -95,8 +96,6 @@ const highlightedTypeCode = ref('');
 const highlightedExampleFullCode = ref('');
 const highlightedExampleShortCode = ref('');
 const highlightedExampleShortCode2 = ref('');
-const highlightedCustomCode = ref('');
-const highlightedCustomShortCode = ref('');
 const highlightedDefaultClassCode = ref('');
 
 onMounted(async () => {
@@ -128,16 +127,6 @@ onMounted(async () => {
     theme: 'github-light',
   });
 
-  highlightedCustomShortCode.value = highlighter.codeToHtml(customShortCode, {
-    lang: 'vue',
-    theme: 'github-light',
-  });
-
-  highlightedCustomCode.value = highlighter.codeToHtml(customCode, {
-    lang: 'vue',
-    theme: 'github-light',
-  });
-
   highlightedDefaultClassCode.value = highlighter.codeToHtml(defaultCode, {
     lang: 'vue',
     theme: 'github-light',
@@ -156,16 +145,6 @@ const copyToExampleShortText2 = async () => {
 
 const copyToExampleFullText = async () => {
   await navigator.clipboard.writeText(exampleFullCode);
-  toast.success(`Copy code!`);
-};
-
-const copyToCustomShortText = async () => {
-  await navigator.clipboard.writeText(customShortCode);
-  toast.success(`Copy code!`);
-};
-
-const copyToCustomFullText = async () => {
-  await navigator.clipboard.writeText(customCode);
   toast.success(`Copy code!`);
 };
 </script>
@@ -291,63 +270,14 @@ const copyToCustomFullText = async () => {
       </div>
 
       <div class="mt-12 w-full">
-        <h2 class="font-bold text-xl mb-4 text-neutral-800">Custom</h2>
-        <div class="text-neutral-500">
-          MinimalCarousel provides the ability to customize buttons. This allows
+        <DocItem
+          title="Custom"
+          description="MinimalCarousel provides the ability to customize buttons. This allows
           users to implement buttons with their own styles and behaviors instead
-          of using the default buttons.
-        </div>
-
-        <div class="mt-2 p-6 border-[1px] rounded-xl">
-          <MinimalCarousel :imageItems="IMAGES" class="rounded-xl">
-            <template #prev-btn="{ defaultClass, goToPrev }">
-              <span @click="goToPrev" class="text-white" :class="defaultClass">
-                prev button
-              </span>
-            </template>
-          </MinimalCarousel>
-        </div>
-
-        <div class="text-sm border rounded-lg shadow-sm my-6 overflow-hidden">
-          <div
-            class="flex justify-between items-center p-2 border-b bg-neutral-50"
-          >
-            <span class="text-xs flex items-center gap-2">
-              <i-mynaui:terminal-solid class="text-neutral-400" />
-              <span class="text-neutral-500">Example</span>
-            </span>
-
-            <div class="flex items-center gap-2">
-              <button @click="isCustomFullAndShort = !isCustomFullAndShort">
-                <i-heroicons:code-bracket-square
-                  class="text-neutral-600 hover:text-neutral-400"
-                />
-              </button>
-
-              <button
-                v-if="isCustomFullAndShort"
-                @click="copyToCustomShortText"
-              >
-                <i-heroicons:square-2-stack
-                  class="text-neutral-600 hover:text-neutral-400"
-                />
-              </button>
-
-              <button v-else @click="copyToCustomFullText">
-                <i-heroicons:square-2-stack
-                  class="text-neutral-600 hover:text-neutral-400"
-                />
-              </button>
-            </div>
-          </div>
-
-          <pre
-            v-if="isCustomFullAndShort"
-            class="p-4"
-            v-html="highlightedCustomShortCode"
-          />
-          <pre v-else class="p-4" v-html="highlightedCustomCode" />
-        </div>
+          of using the default buttons."
+          :shortCode="customShortCode"
+          :longCode="customCode"
+        />
 
         <h3 class="font-bold text-xl my-4 text-neutral-800">Usage</h3>
         <div class="text-neutral-500">
