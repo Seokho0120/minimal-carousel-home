@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { toast } from 'vue-sonner';
 import { createHighlighter } from 'shiki';
+import DocIntro from './docitems/DocIntro.vue';
 
 const installCode = `pnpm i minimal-carousel`;
 const usageCode = `<script setup lang='ts'>
@@ -77,13 +78,10 @@ const copyToUsageText = async () => {
 <template>
   <div class="py-16">
     <div class="max-w-[642px] w-full mx-auto">
-      <div class="flex flex-col gap-4">
-        <h1 class="font-semibold text-4xl text-neutral-800">Getting Started</h1>
-        <div class="text-neutral-500">
-          Minimal Carousel is a carousel component for Vue. You can install
-          Minimal Carousel in a simple way.
-        </div>
-      </div>
+      <DocIntro
+        title="Getting Started"
+        description="Minimal Carousel is a carousel component for Vue. You can install Minimal Carousel in a simple way."
+      />
 
       <!-- Installation -->
       <div class="mt-12 w-full">

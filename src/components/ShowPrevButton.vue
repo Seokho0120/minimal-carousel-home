@@ -7,6 +7,7 @@ import img2 from '../assets/images/img2.jpg';
 import img3 from '../assets/images/img3.jpg';
 import img4 from '../assets/images/img4.jpg';
 import img5 from '../assets/images/img5.jpg';
+import DocIntro from './docitems/DocIntro.vue';
 
 const IMAGES = [
   {
@@ -172,13 +173,11 @@ const copyToCustomFullText = async () => {
 <template>
   <div class="py-16">
     <div class="max-w-[642px] w-full mx-auto">
-      <div class="flex flex-col gap-4">
-        <h1 class="font-semibold text-4xl text-neutral-800">ShowPrevButton</h1>
-        <div class="text-neutral-500">
-          The showPrevButton feature displays the previous button, allowing
-          users to navigate to the previous image in the carousel.
-        </div>
-      </div>
+      <DocIntro
+        title="ShowPrevButton"
+        description="The showPrevButton feature displays the previous button, allowing
+          users to navigate to the previous image in the carousel."
+      />
 
       <!-- ImageItems 설명 -->
       <div class="mt-12 w-full">

@@ -7,6 +7,7 @@ import img2 from '../assets/images/img2.jpg';
 import img3 from '../assets/images/img3.jpg';
 import img4 from '../assets/images/img4.jpg';
 import img5 from '../assets/images/img5.jpg';
+import DocIntro from './docitems/DocIntro.vue';
 
 const IMAGES = [
   {
@@ -109,13 +110,11 @@ const copyToExampleFullText = async () => {
 <template>
   <div class="py-16">
     <div class="max-w-[642px] w-full mx-auto">
-      <div class="flex flex-col gap-4">
-        <h1 class="font-semibold text-4xl text-neutral-800">ImageItems</h1>
-        <div class="text-neutral-500">
-          ImageItems is a required value for Minimal Carousel, and you can
-          configure it according to the type with the images you want.
-        </div>
-      </div>
+      <DocIntro
+        title="ImageItems"
+        description="ImageItems is a required value for Minimal Carousel, and you can
+          configure it according to the type with the images you want."
+      />
 
       <!-- ImageItems 설명 -->
       <div class="mt-12 w-full">

@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    DocIntro: typeof import('./src/components/docitems/DocIntro.vue')['default']
     GettingStarted: typeof import('./src/components/GettingStarted.vue')['default']
     'IHeroicons:codeBracketSquare': typeof import('~icons/heroicons/code-bracket-square')['default']
     'IHeroicons:codeBracketSquare16': typeof import('~icons/heroicons/code-bracket-square16')['default']

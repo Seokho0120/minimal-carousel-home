@@ -172,13 +172,11 @@ const copyToCustomFullText = async () => {
 <template>
   <div class="py-16">
     <div class="max-w-[642px] w-full mx-auto">
-      <div class="flex flex-col gap-4">
-        <h1 class="font-semibold text-4xl text-neutral-800">ShowNextButton</h1>
-        <div class="text-neutral-500">
-          The showNextButton feature displays the next button, allowing users to
-          navigate to the next image in the carousel.
-        </div>
-      </div>
+      <DocIntro
+        title="ShowNextButton"
+        description="The showNextButton feature displays the next button, allowing users to
+          navigate to the next image in the carousel."
+      />
 
       <!-- ImageItems 설명 -->
       <div class="mt-12 w-full">
