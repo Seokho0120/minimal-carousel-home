@@ -7,8 +7,8 @@ import { createHighlighter, type Highlighter } from 'shiki';
 const props = defineProps<{
   title: string;
   description: string;
-  shortCode: string;
-  longCode: string;
+  shortCode?: string;
+  longCode?: string;
 }>();
 
 const highlightedLongCode = ref<string>('');
@@ -22,7 +22,7 @@ async function highlightCode(code: string, highlighter: Highlighter) {
 async function copyToClipBoard(type: 'short' | 'long') {
   const codeToCopy = type === 'short' ? props.shortCode : props.longCode;
 
-  await navigator.clipboard.writeText(codeToCopy);
+  await navigator.clipboard.writeText(codeToCopy || '');
   toast.success(`Copy code!`);
 }
 
@@ -33,11 +33,14 @@ onMounted(async () => {
   });
 
   highlightedShortCode.value = await highlightCode(
-    props.shortCode,
+    props.shortCode || '',
     highlighter,
   );
 
-  highlightedLongCode.value = await highlightCode(props.longCode, highlighter);
+  highlightedLongCode.value = await highlightCode(
+    props.longCode || '',
+    highlighter,
+  );
 });
 </script>
 
