@@ -7,8 +7,8 @@ import img2 from '../assets/images/img2.jpg';
 import img3 from '../assets/images/img3.jpg';
 import img4 from '../assets/images/img4.jpg';
 import img5 from '../assets/images/img5.jpg';
-import DocIntro from './docitems/DocIntro.vue';
-import DocItem from './docitems/DocItem.vue';
+import DocIntro from './docItems/DocIntro.vue';
+import DocItem from './docItems/DocItem.vue';
 
 const IMAGES = [
   {
@@ -182,55 +182,13 @@ const copyToExampleFullText = async () => {
       </div>
 
       <div class="mt-12 w-full">
-        <h2 class="font-semibold text-xl mb-4 text-neutral-800">Example</h2>
-        <div class="text-neutral-500">
-          The default value of showPrevButton is true, and it will always be
-          shown unless additional settings are applied.
-        </div>
-
-        <!-- 예시 -->
-        <div class="mt-2 p-6 border-[1px] rounded-xl">
-          <MinimalCarousel :imageItems="IMAGES" class="rounded-lg" />
-        </div>
-
-        <!-- code -->
-        <div class="text-sm border rounded-lg shadow-sm my-6 overflow-hidden">
-          <div
-            class="flex justify-between items-center p-2 border-b bg-neutral-50"
-          >
-            <span class="text-xs flex items-center gap-2">
-              <i-heroicons:document-solid class="text-neutral-400" />
-              <span class="text-neutral-500">Example</span>
-            </span>
-
-            <div class="flex items-center gap-2">
-              <button @click="isFullAndShort = !isFullAndShort">
-                <i-heroicons:code-bracket-square
-                  class="text-neutral-600 hover:text-neutral-400"
-                />
-              </button>
-
-              <button v-if="isFullAndShort" @click="copyToExampleShortText">
-                <i-heroicons:square-2-stack
-                  class="text-neutral-600 hover:text-neutral-400"
-                />
-              </button>
-
-              <button v-else @click="copyToExampleFullText">
-                <i-heroicons:square-2-stack
-                  class="text-neutral-600 hover:text-neutral-400"
-                />
-              </button>
-            </div>
-          </div>
-
-          <pre
-            v-if="isFullAndShort"
-            class="p-4"
-            v-html="highlightedExampleShortCode"
-          />
-          <pre v-else class="p-4" v-html="highlightedExampleFullCode" />
-        </div>
+        <DocItem
+          title="Example"
+          description="The default value of showPrevButton is true, and it will always be
+          shown unless additional settings are applied."
+          :shortCode="exampleShortCode"
+          :longCode="exampleFullCode"
+        />
 
         <div class="text-neutral-500">
           If showPrevButton is set to false, the previous button will not be

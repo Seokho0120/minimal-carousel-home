@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { toast } from 'vue-sonner';
 import { createHighlighter } from 'shiki';
-import DocIntro from './docitems/DocIntro.vue';
+import DocIntro from './docItems/DocIntro.vue';
 
 const installCode = `pnpm i minimal-carousel`;
 const usageCode = `<script setup lang='ts'>

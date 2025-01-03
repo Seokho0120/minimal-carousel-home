@@ -19,13 +19,6 @@ async function highlightCode(code: string, highlighter: Highlighter) {
   return highlighter.codeToHtml(code, { lang: 'vue', theme: 'github-light' });
 }
 
-async function copyToClipBoard(type: 'short' | 'long') {
-  const codeToCopy = type === 'short' ? props.shortCode : props.longCode;
-
-  await navigator.clipboard.writeText(codeToCopy || '');
-  toast.success(`Copy code!`);
-}
-
 onMounted(async () => {
   const highlighter = await createHighlighter({
     themes: ['github-light'],
@@ -42,6 +35,13 @@ onMounted(async () => {
     highlighter,
   );
 });
+
+async function copyToClipBoard(type: 'short' | 'long') {
+  const codeToCopy = type === 'short' ? props.shortCode : props.longCode;
+
+  await navigator.clipboard.writeText(codeToCopy || '');
+  toast.success(`Copy code!`);
+}
 </script>
 
 <template>
