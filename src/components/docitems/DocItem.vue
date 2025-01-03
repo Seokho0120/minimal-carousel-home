@@ -5,10 +5,11 @@ import { IMAGES } from '@/constants/ImgData';
 import { createHighlighter, type Highlighter } from 'shiki';
 
 const props = defineProps<{
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   shortCode?: string;
   longCode?: string;
+  example?: boolean;
 }>();
 
 const highlightedLongCode = ref<string>('');
@@ -46,22 +47,21 @@ async function copyToClipBoard(type: 'short' | 'long') {
 
 <template>
   <div>
-    <h2 class="font-bold text-xl mb-4 text-neutral-800">{{ title }}</h2>
-    <div class="text-neutral-500">
+    <h2 v-if="title" class="font-bold text-xl mb-4 text-neutral-800">
+      {{ title }}
+    </h2>
+    <div v-if="description" class="text-neutral-500">
       {{ description }}
     </div>
 
-    <div class="mt-2 p-6 border-[1px] rounded-xl">
-      <MinimalCarousel :imageItems="IMAGES" class="rounded-xl">
-        <template #prev-btn="{ defaultClass, goToPrev }">
-          <span @click="goToPrev" class="text-white" :class="defaultClass">
-            prev button
-          </span>
-        </template>
-      </MinimalCarousel>
-    </div>
+    <!-- carousel example -->
+    <slot name="carousel" />
 
-    <div class="text-sm border rounded-lg shadow-sm my-6 overflow-hidden">
+    <!-- clipboard -->
+    <div
+      v-if="shortCode || longCode"
+      class="text-sm border rounded-lg shadow-sm my-6 overflow-hidden"
+    >
       <div class="flex justify-between items-center p-2 border-b bg-neutral-50">
         <span class="text-xs flex items-center gap-2">
           <i-mynaui:terminal-solid class="text-neutral-400" />
@@ -69,7 +69,10 @@ async function copyToClipBoard(type: 'short' | 'long') {
         </span>
 
         <div class="flex items-center gap-2">
-          <button @click="isShortCodeVisible = !isShortCodeVisible">
+          <button
+            v-if="longCode"
+            @click="isShortCodeVisible = !isShortCodeVisible"
+          >
             <i-heroicons:code-bracket-square
               class="text-neutral-600 hover:text-neutral-400"
             />
@@ -90,11 +93,11 @@ async function copyToClipBoard(type: 'short' | 'long') {
       </div>
 
       <pre
-        v-if="isShortCodeVisible"
+        v-if="shortCode && isShortCodeVisible"
         class="p-4"
         v-html="highlightedShortCode"
       />
-      <pre v-else class="p-4" v-html="highlightedLongCode" />
+      <pre v-else class="p-4" v-html="longCode && highlightedLongCode" />
     </div>
   </div>
 </template>
