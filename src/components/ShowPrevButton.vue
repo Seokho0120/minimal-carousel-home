@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { toast } from 'vue-sonner';
 import { createHighlighter } from 'shiki';
 import { IMAGES } from '@/constants/ImgData';
 import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
+import { MinimalCarousel } from 'minimal-carousel';
 
 const typeCode = `showPrevButton: boolean;`;
 const exampleShortCode = `<MinimalCarousel showPrevButton/>`;
@@ -27,7 +27,6 @@ const IMAGES = [
   <MinimalCarousel :imageItems="IMAGES" showPrevButton/>
 <\/template>
 `;
-
 const customShortCode = `<MinimalCarousel :imageItems="IMAGES">
   <template #prev-btn="{ defaultClass, goToPrev }">
     <span @click="goToPrev" class="text-white" :class="defaultClass">

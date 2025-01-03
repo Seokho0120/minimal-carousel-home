@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { toast } from 'vue-sonner';
-import { IMAGES } from '@/constants/ImgData';
 import { createHighlighter, type Highlighter } from 'shiki';
 
 const props = defineProps<{
@@ -10,14 +9,21 @@ const props = defineProps<{
   shortCode?: string;
   longCode?: string;
   example?: boolean;
+  clipboardTitle?: string;
+  langTsx?: boolean;
+  langBash?: boolean;
 }>();
 
 const highlightedLongCode = ref<string>('');
 const highlightedShortCode = ref<string>('');
 const isShortCodeVisible = ref<boolean>(true);
+const langType = props.langTsx ? 'tsx' : props.langBash ? 'bash' : 'vue';
 
 async function highlightCode(code: string, highlighter: Highlighter) {
-  return highlighter.codeToHtml(code, { lang: 'vue', theme: 'github-light' });
+  return highlighter.codeToHtml(code, {
+    lang: langType,
+    theme: 'github-light',
+  });
 }
 
 onMounted(async () => {
@@ -65,7 +71,9 @@ async function copyToClipBoard(type: 'short' | 'long') {
       <div class="flex justify-between items-center p-2 border-b bg-neutral-50">
         <span class="text-xs flex items-center gap-2">
           <i-mynaui:terminal-solid class="text-neutral-400" />
-          <span class="text-neutral-500">Example</span>
+          <span class="text-neutral-500">{{
+            clipboardTitle ? clipboardTitle : 'Example'
+          }}</span>
         </span>
 
         <div class="flex items-center gap-2">
