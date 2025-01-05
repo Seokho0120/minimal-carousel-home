@@ -24,6 +24,7 @@ declare module 'vue' {
     'IHeroicons:square2Stack': typeof import('~icons/heroicons/square2-stack')['default']
     ImageItems: typeof import('./src/components/ImageItems.vue')['default']
     'IMynaui:terminalSolid': typeof import('~icons/mynaui/terminal-solid')['default']
+    KeyboardControl: typeof import('./src/components/KeyboardControl.vue')['default']
     Lnb: typeof import('./src/components/Lnb.vue')['default']
     Pagination: typeof import('./src/components/Pagination.vue')['default']
     PauseOnMouseEnter: typeof import('./src/components/PauseOnMouseEnter.vue')['default']

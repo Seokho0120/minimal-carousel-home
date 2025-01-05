@@ -78,12 +78,12 @@ const router = createRouter({
           path: 'effect-fade',
           component: () => import('@/components/EffectFade.vue'),
         },
+        {
+          name: 'keyboardControl',
+          path: 'keyboard-control',
+          component: () => import('@/components/KeyboardControl.vue'),
+        },
         // TODO:
-        // {
-        //   name: 'keyboardControl',
-        //   path: 'keyboard-control',
-        //   component: () => import('@/components/KeyboardControl.vue'),
-        // },
         // {
         //   name: 'parallax',
         //   path: 'parallax',

@@ -5,8 +5,8 @@ import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import { IMAGES } from '@/constants/ImgData';
 
-const typeCode = `effectFade: boolean;`;
-const exampleShortCode = `<MinimalCarousel effectFade />`;
+const typeCode = `keyboardControl: boolean;`;
+const exampleShortCode = `<MinimalCarousel keyboardControl />`;
 const exampleFullCode = `<script setup lang='ts'>
 import img1 from '../img1.jpg';
 import img2 from '../img2.jpg';
@@ -20,7 +20,7 @@ const IMAGES = [
 <\/script>
 
 <template>
-  <MinimalCarousel :imageItems="IMAGES" effectFade />
+  <MinimalCarousel :imageItems="IMAGES" keyboardControl />
 <\/template>
 `;
 </script>
@@ -29,14 +29,14 @@ const IMAGES = [
   <div class="py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
-        title="EffectFade"
-        description="The effectFade feature activates a fade effect between slides."
+        title="KeyboardControl"
+        description="The keyboardControl feature allows users to control the slides using the keyboard arrow keys."
       />
 
       <div class="mt-12 w-full">
         <DocItemType
-          title="Type of EffectFade"
-          description="The type of EffectFade is boolean, and the default value is false."
+          title="Type of KeyboardControl"
+          description="The type of KeyboardControl is boolean, and the default value is false."
           :shortCode="typeCode"
         />
       </div>
@@ -44,7 +44,7 @@ const IMAGES = [
       <div class="mt-12 w-full">
         <DocItem
           title="Example"
-          description="the effectFade feature has a default value of false, and when set to true, a fade effect will be displayed during slide transitions."
+          description="The default value for keyboardControl is false, and when set to true, users can control the slides with the keyboard."
           :shortCode="exampleShortCode"
           :longCode="exampleFullCode"
           example
@@ -54,7 +54,7 @@ const IMAGES = [
               <MinimalCarousel
                 :imageItems="IMAGES"
                 class="rounded-lg"
-                effectFade
+                keyboardControl
               />
             </div>
           </template>

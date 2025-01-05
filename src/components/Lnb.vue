@@ -74,13 +74,13 @@ const categories = ref([
         path: 'stop-on-last-slide',
       },
       { lnbName: 'EffectFade', name: 'effectFade', path: 'effect-fade' },
+      {
+        lnbName: 'KeyboardControl',
+        name: 'keyboardControl',
+        path: 'keyboard-control',
+      },
 
       // TODO:
-      // {
-      //   lnbName: 'KeyboardControl',
-      //   name: 'keyboardControl',
-      //   path: 'keyboard-control',
-      // },
       // { lnbName: 'Parallax', name: 'parallax', path: 'parallax' },
       // { lnbName: 'Contents', name: 'contents', path: 'contents' },
     ],
