@@ -83,16 +83,16 @@ const router = createRouter({
           path: 'keyboard-control',
           component: () => import('@/components/KeyboardControl.vue'),
         },
+        {
+          name: 'contents',
+          path: 'contents',
+          component: () => import('@/components/Contents.vue'),
+        },
         // TODO:
         // {
         //   name: 'parallax',
         //   path: 'parallax',
         //   component: () => import('@/components/Parallax.vue'),
-        // },
-        // {
-        //   name: 'contents',
-        //   path: 'contents',
-        //   component: () => import('@/components/Contents.vue'),
         // },
       ],
     },

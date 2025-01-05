@@ -5,7 +5,7 @@ import DocItemType from './docItems/DocItemType.vue';
 import DocItem from './docItems/DocItem.vue';
 import { MinimalCarousel } from 'minimal-carousel';
 
-const typeCode = `export interface ImageItemsType {
+const typeCode = `imageItems: {
   link: string;
   id?: number;
   name?: string;

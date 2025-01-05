@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AutoPlay: typeof import('./src/components/AutoPlay.vue')['default']
     AutoPlayDuration: typeof import('./src/components/AutoPlayDuration.vue')['default']
+    Contents: typeof import('./src/components/Contents.vue')['default']
     DisableOnInteraction: typeof import('./src/components/DisableOnInteraction.vue')['default']
     DocIntro: typeof import('./src/components/docItems/DocIntro.vue')['default']
     DocItem: typeof import('./src/components/docItems/DocItem.vue')['default']

@@ -79,10 +79,10 @@ const categories = ref([
         name: 'keyboardControl',
         path: 'keyboard-control',
       },
+      { lnbName: 'Contents', name: 'contents', path: 'contents' },
 
       // TODO:
       // { lnbName: 'Parallax', name: 'parallax', path: 'parallax' },
-      // { lnbName: 'Contents', name: 'contents', path: 'contents' },
     ],
   },
 ]);
