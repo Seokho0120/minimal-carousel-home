@@ -46,6 +46,12 @@ const categories = ref([
         path: 'show-next-button',
       },
       { lnbName: 'Pagination', name: 'pagination', path: 'pagination' },
+      {
+        lnbName: 'DynamicBullets',
+        name: 'dynamicBullets',
+        path: 'dynamicBullets',
+      },
+
       // TODO:
       // { lnbName: 'Scrollbar', name: 'scrollbar', path: 'scrollbar' },
       // { lnbName: 'AutoPlay', name: 'autoPlay', path: 'auto-play' },

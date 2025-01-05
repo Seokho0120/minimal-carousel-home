@@ -38,7 +38,11 @@ const router = createRouter({
           path: 'pagination',
           component: () => import('@/components/Pagination.vue'),
         },
-
+        {
+          name: 'dynamicBullets',
+          path: 'dynamicBullets',
+          component: () => import('@/components/DynamicBullets.vue'),
+        },
         // TODO:
         // {
         //   name: 'scrollbar',

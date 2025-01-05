@@ -5,8 +5,8 @@ import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import { IMAGES } from '@/constants/ImgData';
 
-const typeCode = `pagination: boolean;`;
-const exampleShortCode = `<MinimalCarousel pagination/>`;
+const typeCode = `dynamicBullets: boolean;`;
+const exampleShortCode = `<MinimalCarousel dynamicBullets pagination/>`;
 const exampleFullCode = `<script setup lang='ts'>
 import img1 from '../img1.jpg';
 import img2 from '../img2.jpg';
@@ -21,7 +21,7 @@ const IMAGES = [
 <\/script>
 
 <template>
-  <MinimalCarousel :imageItems="IMAGES" pagination/>
+  <MinimalCarousel :imageItems="IMAGES" dynamicBullets pagination/>
 <\/template>
 `;
 </script>
@@ -30,14 +30,14 @@ const IMAGES = [
   <div class="py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
-        title="Pagination"
-        description="The pagination feature should display bullets corresponding to the number of slides. When a bullet is clicked, it should navigate to the respective slide."
+        title="DynamicBullets"
+        description="The dynamicBullets feature is an option that allows for dynamic styling of the bullets."
       />
 
       <div class="mt-12 w-full">
         <DocItemType
-          title="Type of Pagination"
-          description="The type of Pagination is boolean, and the default value is false."
+          title="Type of DynamicBullets"
+          description="The type of DynamicBullets is boolean, and the default value is false."
           :shortCode="typeCode"
         />
       </div>
@@ -45,7 +45,7 @@ const IMAGES = [
       <div class="mt-12 w-full">
         <DocItem
           title="Example"
-          description="The default value for pagination is false. When set to true, the bullets will be displayed."
+          description="The default value for dynamicBullets is false. When set to true, the style of the bullets will change."
           :shortCode="exampleShortCode"
           :longCode="exampleFullCode"
           example
@@ -56,6 +56,7 @@ const IMAGES = [
                 :imageItems="IMAGES"
                 class="rounded-lg"
                 pagination
+                dynamicBullets
               />
             </div>
           </template>

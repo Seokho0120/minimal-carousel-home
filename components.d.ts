@@ -7,9 +7,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    DocIntro: typeof import('./src/components/docitems/DocIntro.vue')['default']
-    DocItem: typeof import('./src/components/docitems/DocItem.vue')['default']
+    DocIntro: typeof import('./src/components/docItems/DocIntro.vue')['default']
+    DocItem: typeof import('./src/components/docItems/DocItem.vue')['default']
     DocItemType: typeof import('./src/components/docItems/DocItemType.vue')['default']
+    DynamicBullets: typeof import('./src/components/DynamicBullets.vue')['default']
     GettingStarted: typeof import('./src/components/GettingStarted.vue')['default']
     'IHeroicons:codeBracketSquare': typeof import('~icons/heroicons/code-bracket-square')['default']
     'IHeroicons:codeBracketSquare16': typeof import('~icons/heroicons/code-bracket-square16')['default']
