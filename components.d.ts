@@ -14,6 +14,7 @@ declare module 'vue' {
     DocItem: typeof import('./src/components/docItems/DocItem.vue')['default']
     DocItemType: typeof import('./src/components/docItems/DocItemType.vue')['default']
     DynamicBullets: typeof import('./src/components/DynamicBullets.vue')['default']
+    EffectFade: typeof import('./src/components/EffectFade.vue')['default']
     GettingStarted: typeof import('./src/components/GettingStarted.vue')['default']
     'IHeroicons:codeBracketSquare': typeof import('~icons/heroicons/code-bracket-square')['default']
     'IHeroicons:codeBracketSquare16': typeof import('~icons/heroicons/code-bracket-square16')['default']
@@ -31,5 +32,6 @@ declare module 'vue' {
     Scrollbar: typeof import('./src/components/Scrollbar.vue')['default']
     ShowNextButton: typeof import('./src/components/ShowNextButton.vue')['default']
     ShowPrevButton: typeof import('./src/components/ShowPrevButton.vue')['default']
+    StopOnLastSlide: typeof import('./src/components/StopOnLastSlide.vue')['default']
   }
 }

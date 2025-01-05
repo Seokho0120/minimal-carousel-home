@@ -68,14 +68,14 @@ const categories = ref([
         name: 'pauseOnMouseEnter',
         path: 'pause-on-mouse-enter',
       },
+      {
+        lnbName: 'StopOnLastSlide',
+        name: 'stopOnLastSlide',
+        path: 'stop-on-last-slide',
+      },
+      { lnbName: 'EffectFade', name: 'effectFade', path: 'effect-fade' },
 
       // TODO:
-      // {
-      //   lnbName: 'StopOnLastSlide',
-      //   name: 'stopOnLastSlide',
-      //   path: 'stop-on-last-slide',
-      // },
-      // { lnbName: 'EffectFade', name: 'effectFade', path: 'effect-fade' },
       // {
       //   lnbName: 'KeyboardControl',
       //   name: 'keyboardControl',

@@ -5,8 +5,8 @@ import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import { IMAGES } from '@/constants/ImgData';
 
-const typeCode = `autoPlayDuration: number;`;
-const exampleShortCode = `<MinimalCarousel :autoPlayDuration="3500" autoplay/>`;
+const typeCode = `stopOnLastSlide: boolean;`;
+const exampleShortCode = `<MinimalCarousel stopOnLastSlide autoPlay/>`;
 const exampleFullCode = `<script setup lang='ts'>
 import img1 from '../img1.jpg';
 import img2 from '../img2.jpg';
@@ -20,11 +20,7 @@ const IMAGES = [
 <\/script>
 
 <template>
-  <MinimalCarousel 
-    :imageItems="IMAGES" 
-    :autoPlayDuration="3500" 
-    autoplay
-  />
+  <MinimalCarousel :imageItems="IMAGES" stopOnLastSlide autoPlay/>
 <\/template>
 `;
 </script>
@@ -33,14 +29,14 @@ const IMAGES = [
   <div class="py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
-        title="AutoPlayDuration"
-        description="The autoPlayDuration feature is an option that sets the interval for autoplay."
+        title="StopOnLastSlide"
+        description="The stopOnLastSlide feature stops autoplay when the last slide is reached."
       />
 
       <div class="mt-12 w-full">
         <DocItemType
-          title="Type of AutoPlayDuration"
-          description="The type of autoPlayDuration is number, and the default value is 2500(2.5sec)."
+          title="Type of StopOnLastSlide"
+          description="The type of StopOnLastSlide is boolean, and the default value is false."
           :shortCode="typeCode"
         />
       </div>
@@ -48,7 +44,7 @@ const IMAGES = [
       <div class="mt-12 w-full">
         <DocItem
           title="Example"
-          description="The default value for autoPlayDuration is 2500(2.5sec), and users can customize it to their preferred duration."
+          description="The default value for stopOnLastSlide is false, and when set to true, autoplay will stop upon reaching the last slide."
           :shortCode="exampleShortCode"
           :longCode="exampleFullCode"
           example
@@ -58,8 +54,8 @@ const IMAGES = [
               <MinimalCarousel
                 :imageItems="IMAGES"
                 class="rounded-lg"
+                stopOnLastSlide
                 autoPlay
-                :autoPlayDuration="3500"
               />
             </div>
           </template>

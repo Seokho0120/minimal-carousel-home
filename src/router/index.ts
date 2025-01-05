@@ -68,17 +68,17 @@ const router = createRouter({
           path: 'pause-on-mouse-enter',
           component: () => import('@/components/PauseOnMouseEnter.vue'),
         },
+        {
+          name: 'stopOnLastSlide',
+          path: 'stop-on-last-slide',
+          component: () => import('@/components/StopOnLastSlide.vue'),
+        },
+        {
+          name: 'effectFade',
+          path: 'effect-fade',
+          component: () => import('@/components/EffectFade.vue'),
+        },
         // TODO:
-        // {
-        //   name: 'stopOnLastSlide',
-        //   path: 'stop-on-last-slide',
-        //   component: () => import('@/components/StopOnLastSlide.vue'),
-        // },
-        // {
-        //   name: 'effectFade',
-        //   path: 'effect-fade',
-        //   component: () => import('@/components/EffectFade.vue'),
-        // },
         // {
         //   name: 'keyboardControl',
         //   path: 'keyboard-control',

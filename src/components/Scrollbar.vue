@@ -17,7 +17,6 @@ const IMAGES = [
   { link: 'img2.jpg', id: 2, name: 'img2' },
   { link: 'img3.jpg', id: 3, name: 'img3' },
 ];
-
 <\/script>
 
 <template>
