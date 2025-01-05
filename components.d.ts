@@ -7,6 +7,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AutoPlay: typeof import('./src/components/AutoPlay.vue')['default']
+    AutoPlayDuration: typeof import('./src/components/AutoPlayDuration.vue')['default']
     DocIntro: typeof import('./src/components/docItems/DocIntro.vue')['default']
     DocItem: typeof import('./src/components/docItems/DocItem.vue')['default']
     DocItemType: typeof import('./src/components/docItems/DocItemType.vue')['default']

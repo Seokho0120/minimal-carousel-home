@@ -48,17 +48,17 @@ const router = createRouter({
           path: 'scrollbar',
           component: () => import('@/components/Scrollbar.vue'),
         },
+        {
+          name: 'autoPlay',
+          path: 'auto-play',
+          component: () => import('@/components/AutoPlay.vue'),
+        },
+        {
+          name: 'autoPlayDuration',
+          path: 'auto-play-duration',
+          component: () => import('@/components/AutoPlayDuration.vue'),
+        },
         // TODO:
-        // {
-        //   name: 'autoPlay',
-        //   path: 'auto-play',
-        //   component: () => import('@/components/AutoPlay.vue'),
-        // },
-        // {
-        //   name: 'autoPlayDuration',
-        //   path: 'auto-play-duration',
-        //   component: () => import('@/components/AutoPlayDuration.vue'),
-        // },
         // {
         //   name: 'disableOnInteraction',
         //   path: 'disable-on-interaction',

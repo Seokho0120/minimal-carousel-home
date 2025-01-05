@@ -52,14 +52,14 @@ const categories = ref([
         path: 'dynamicBullets',
       },
       { lnbName: 'Scrollbar', name: 'scrollbar', path: 'scrollbar' },
+      { lnbName: 'AutoPlay', name: 'autoPlay', path: 'auto-play' },
+      {
+        lnbName: 'AutoPlayDuration',
+        name: 'autoPlayDuration',
+        path: 'auto-play-duration',
+      },
 
       // TODO:
-      // { lnbName: 'AutoPlay', name: 'autoPlay', path: 'auto-play' },
-      // {
-      //   lnbName: 'AutoPlayDuration',
-      //   name: 'autoPlayDuration',
-      //   path: 'auto-play-duration',
-      // },
       // {
       //   lnbName: 'DisableOnInteraction',
       //   name: 'disableOnInteraction',
