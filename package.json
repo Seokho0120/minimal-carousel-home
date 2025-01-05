@@ -13,7 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "minimal-carousel": "^0.1.5",
+    "minimal-carousel": "^0.1.7",
     "shiki": "^1.24.2",
     "unplugin-icons": "^0.22.0",
     "unplugin-vue-components": "^0.28.0",
