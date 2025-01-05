@@ -43,12 +43,12 @@ const router = createRouter({
           path: 'dynamicBullets',
           component: () => import('@/components/DynamicBullets.vue'),
         },
+        {
+          name: 'scrollbar',
+          path: 'scrollbar',
+          component: () => import('@/components/Scrollbar.vue'),
+        },
         // TODO:
-        // {
-        //   name: 'scrollbar',
-        //   path: 'scrollbar',
-        //   component: () => import('@/components/Scrollbar.vue'),
-        // },
         // {
         //   name: 'autoPlay',
         //   path: 'auto-play',

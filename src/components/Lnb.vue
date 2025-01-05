@@ -51,9 +51,9 @@ const categories = ref([
         name: 'dynamicBullets',
         path: 'dynamicBullets',
       },
+      { lnbName: 'Scrollbar', name: 'scrollbar', path: 'scrollbar' },
 
       // TODO:
-      // { lnbName: 'Scrollbar', name: 'scrollbar', path: 'scrollbar' },
       // { lnbName: 'AutoPlay', name: 'autoPlay', path: 'auto-play' },
       // {
       //   lnbName: 'AutoPlayDuration',

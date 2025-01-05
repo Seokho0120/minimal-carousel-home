@@ -24,6 +24,7 @@ declare module 'vue' {
     Pagination: typeof import('./src/components/Pagination.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Scrollbar: typeof import('./src/components/Scrollbar.vue')['default']
     ShowNextButton: typeof import('./src/components/ShowNextButton.vue')['default']
     ShowPrevButton: typeof import('./src/components/ShowPrevButton.vue')['default']
   }
