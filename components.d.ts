@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AutoPlay: typeof import('./src/components/AutoPlay.vue')['default']
     AutoPlayDuration: typeof import('./src/components/AutoPlayDuration.vue')['default']
+    DisableOnInteraction: typeof import('./src/components/DisableOnInteraction.vue')['default']
     DocIntro: typeof import('./src/components/docItems/DocIntro.vue')['default']
     DocItem: typeof import('./src/components/docItems/DocItem.vue')['default']
     DocItemType: typeof import('./src/components/docItems/DocItemType.vue')['default']
@@ -24,6 +25,7 @@ declare module 'vue' {
     'IMynaui:terminalSolid': typeof import('~icons/mynaui/terminal-solid')['default']
     Lnb: typeof import('./src/components/Lnb.vue')['default']
     Pagination: typeof import('./src/components/Pagination.vue')['default']
+    PauseOnMouseEnter: typeof import('./src/components/PauseOnMouseEnter.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Scrollbar: typeof import('./src/components/Scrollbar.vue')['default']

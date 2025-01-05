@@ -58,17 +58,17 @@ const router = createRouter({
           path: 'auto-play-duration',
           component: () => import('@/components/AutoPlayDuration.vue'),
         },
+        {
+          name: 'disableOnInteraction',
+          path: 'disable-on-interaction',
+          component: () => import('@/components/DisableOnInteraction.vue'),
+        },
+        {
+          name: 'pauseOnMouseEnter',
+          path: 'pause-on-mouse-enter',
+          component: () => import('@/components/PauseOnMouseEnter.vue'),
+        },
         // TODO:
-        // {
-        //   name: 'disableOnInteraction',
-        //   path: 'disable-on-interaction',
-        //   component: () => import('@/components/DisableOnInteraction.vue'),
-        // },
-        // {
-        //   name: 'pauseOnMouseEnter',
-        //   path: 'pause-on-mouse-enter',
-        //   component: () => import('@/components/PauseOnMouseEnter.vue'),
-        // },
         // {
         //   name: 'stopOnLastSlide',
         //   path: 'stop-on-last-slide',

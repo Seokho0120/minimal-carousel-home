@@ -58,18 +58,18 @@ const categories = ref([
         name: 'autoPlayDuration',
         path: 'auto-play-duration',
       },
+      {
+        lnbName: 'DisableOnInteraction',
+        name: 'disableOnInteraction',
+        path: 'disable-on-interaction',
+      },
+      {
+        lnbName: 'PauseOnMouseEnter',
+        name: 'pauseOnMouseEnter',
+        path: 'pause-on-mouse-enter',
+      },
 
       // TODO:
-      // {
-      //   lnbName: 'DisableOnInteraction',
-      //   name: 'disableOnInteraction',
-      //   path: 'disable-on-interaction',
-      // },
-      // {
-      //   lnbName: 'PauseOnMouseEnter',
-      //   name: 'pauseOnMouseEnter',
-      //   path: 'pause-on-mouse-enter',
-      // },
       // {
       //   lnbName: 'StopOnLastSlide',
       //   name: 'stopOnLastSlide',
