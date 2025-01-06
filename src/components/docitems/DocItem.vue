@@ -13,7 +13,7 @@ const props = defineProps<{
   langTsx?: boolean;
   langBash?: boolean;
 }>();
-
+// test
 const highlightedLongCode = ref<string>('');
 const highlightedShortCode = ref<string>('');
 const isShortCodeVisible = ref<boolean>(true);
