@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 const installCode = `pnpm i minimal-carousel`;
@@ -26,6 +27,12 @@ import 'minimal-carousel/minimal-carousel.css';
 const app = createApp(App)
 app.component('MinimalCarousel', MinimalCarousel);
 `;
+
+const clickedTitle = ref();
+
+function handleClick(title: string) {
+  clickedTitle.value = title;
+}
 </script>
 
 <template>
@@ -33,12 +40,15 @@ app.component('MinimalCarousel', MinimalCarousel);
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
         title="Getting Started"
+        id="getting-started"
         description="Minimal Carousel is a carousel component for Vue. You can install Minimal Carousel in a simple way."
+        @handleClick="handleClick('Getting Started')"
       />
 
       <div class="mt-12 w-full">
         <DocItem
           title="Installation"
+          id="Installation"
           description="Simply pnpm/npm/yarn install the package."
           :shortCode="installCode"
           clipboardTitle="Terminal"
@@ -49,6 +59,7 @@ app.component('MinimalCarousel', MinimalCarousel);
       <div class="mt-12 w-full">
         <DocItem
           title="Configuration"
+          id="Configuration"
           description="MinimalCarousel is a required component that needs to be registered
           for use globally in your application. By adding this component, the
           default configuration is set up, allowing you to use it conveniently
@@ -62,10 +73,16 @@ app.component('MinimalCarousel', MinimalCarousel);
       <div class="mt-12 w-full">
         <DocItem
           title="Add MinimalCarousel to your app"
+          id="Add MinimalCarousel to your app"
           description="It can be placed anywhere."
           :shortCode="usageCode"
           clipboardTitle="App.vue"
         />
+      </div>
+
+      <div class="fixed right-4 top-16 bg-white p-2 shadow-md">
+        <h2>Clicked Title:</h2>
+        <p>{{ clickedTitle }}</p>
       </div>
     </div>
   </div>

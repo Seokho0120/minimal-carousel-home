@@ -12,6 +12,7 @@ const props = defineProps<{
   clipboardTitle?: string;
   langTsx?: boolean;
   langBash?: boolean;
+  id?: string;
 }>();
 // test
 const highlightedLongCode = ref<string>('');
@@ -49,11 +50,29 @@ async function copyToClipBoard(type: 'short' | 'long') {
   await navigator.clipboard.writeText(codeToCopy || '');
   toast.success(`Copy code!`);
 }
+
+const scrollToSection = (sectionId: string) => {
+  console.log('sectionId??', sectionId);
+
+  const section = document.getElementById(sectionId);
+
+  console.log('section', section);
+
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+    window.history.pushState(null, '', `#${sectionId}`); // URL에 앵커 추가
+  }
+};
 </script>
 
 <template>
   <div>
-    <h2 v-if="title" class="font-bold text-xl mb-4 text-neutral-800">
+    <h2
+      v-if="title"
+      class="font-bold text-xl mb-4 text-neutral-800"
+      :id="id"
+      @click="scrollToSection(id || '')"
+    >
       {{ title }}
     </h2>
     <div v-if="description" class="text-neutral-500">
