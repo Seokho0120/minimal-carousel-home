@@ -14,7 +14,11 @@ const props = defineProps<{
   langBash?: boolean;
   id?: string;
 }>();
-// test
+
+const emit = defineEmits<{
+  'update:clickTitle': [value: string];
+}>();
+
 const highlightedLongCode = ref<string>('');
 const highlightedShortCode = ref<string>('');
 const isShortCodeVisible = ref<boolean>(true);
@@ -51,7 +55,7 @@ async function copyToClipBoard(type: 'short' | 'long') {
   toast.success(`Copy code!`);
 }
 
-const scrollToSection = (sectionId: string) => {
+function scrollToSection(sectionId: string) {
   console.log('sectionId??', sectionId);
 
   const section = document.getElementById(sectionId);
@@ -62,7 +66,9 @@ const scrollToSection = (sectionId: string) => {
     section.scrollIntoView({ behavior: 'smooth' });
     window.history.pushState(null, '', `#${sectionId}`); // URL에 앵커 추가
   }
-};
+
+  emit('update:clickTitle', props.title || '');
+}
 </script>
 
 <template>

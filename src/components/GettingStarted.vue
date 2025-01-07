@@ -28,27 +28,29 @@ const app = createApp(App)
 app.component('MinimalCarousel', MinimalCarousel);
 `;
 
-const clickedTitle = ref();
+const clickedTitle = ref('');
 
 function handleClick(title: string) {
+  console.log('title', title);
   clickedTitle.value = title;
+
+  console.log('clickedTitle.value', clickedTitle.value);
 }
 </script>
 
 <template>
-  <div class="py-16">
+  <div class="flex gap-4 py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
         title="Getting Started"
-        id="getting-started"
         description="Minimal Carousel is a carousel component for Vue. You can install Minimal Carousel in a simple way."
-        @handleClick="handleClick('Getting Started')"
       />
 
       <div class="mt-12 w-full">
         <DocItem
           title="Installation"
           id="Installation"
+          @update:clickTitle="handleClick('Installation')"
           description="Simply pnpm/npm/yarn install the package."
           :shortCode="installCode"
           clipboardTitle="Terminal"
@@ -60,6 +62,7 @@ function handleClick(title: string) {
         <DocItem
           title="Configuration"
           id="Configuration"
+          @handleClick="handleClick('Configuration')"
           description="MinimalCarousel is a required component that needs to be registered
           for use globally in your application. By adding this component, the
           default configuration is set up, allowing you to use it conveniently
@@ -74,16 +77,49 @@ function handleClick(title: string) {
         <DocItem
           title="Add MinimalCarousel to your app"
           id="Add MinimalCarousel to your app"
+          @handleClick="handleClick('Add MinimalCarousel to your app')"
           description="It can be placed anywhere."
           :shortCode="usageCode"
           clipboardTitle="App.vue"
         />
       </div>
-
-      <div class="fixed right-4 top-16 bg-white p-2 shadow-md">
-        <h2>Clicked Title:</h2>
-        <p>{{ clickedTitle }}</p>
-      </div>
     </div>
+
+    <aside class="w-[240px] hidden xl:block sticky top-16 h-[calc(100vh-8rem)]">
+      <div class="flex items-center gap-2 text-sm">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            d="M2 3.75A.75.75 0 0 1 2.75 3h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75M2 8a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 8m0 4.25a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <p>On this page</p>
+      </div>
+
+      <ul class="flex flex-col gap-2 mt-4 border-l-[1px] border-dotted">
+        <li class="h-fit flex">
+          <a href="#installation" class="text-[13px] ml-5 h-5">
+            Installation
+          </a>
+        </li>
+        <li class="h-fit flex">
+          <a href="#configuration" class="text-[13px] ml-5 h-5">
+            Configuration
+          </a>
+        </li>
+        <li class="h-fit flex">
+          <a href="#add-minimal-carousel" class="text-[13px] ml-5 h-5">
+            Add MinimalCarousel to your app
+          </a>
+        </li>
+      </ul>
+    </aside>
   </div>
 </template>
