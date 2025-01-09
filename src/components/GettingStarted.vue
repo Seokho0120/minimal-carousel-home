@@ -28,10 +28,8 @@ const app = createApp(App)
 app.component('MinimalCarousel', MinimalCarousel);
 `;
 
-const clickedTitle = ref('');
-
 const activeSection = ref('');
-const activeIndex = ref();
+const activeIndex = ref(0);
 const itemHeight = ref(0);
 
 function scrollToSection(sectionId: string, index: number) {
@@ -99,6 +97,7 @@ onMounted(() => {
       </div>
     </div>
 
+    <!-- TODO: 타이틀을 클릭했을때 검은색이 움직이지 않음, 그리고 onMounted 부분 꼭 저렇게 해야하나;;  -->
     <aside class="w-[240px] hidden xl:block sticky top-16 h-[calc(100vh-8rem)]">
       <div class="flex items-center gap-2 text-sm">
         <svg
@@ -123,8 +122,8 @@ onMounted(() => {
           aria-hidden="true"
           class="w-[3px] h-5 bg-black absolute left-0 rounded-full"
           :style="{
-            top: `${activeIndex * itemHeight}px`,
-            transition: 'top 0.25s',
+            top: `${activeIndex * 28}px`,
+            transition: 'top 0.3s',
           }"
         />
 
