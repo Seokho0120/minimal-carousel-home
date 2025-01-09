@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 const installCode = `pnpm i minimal-carousel`;
@@ -30,12 +30,29 @@ app.component('MinimalCarousel', MinimalCarousel);
 
 const clickedTitle = ref('');
 
-function handleClick(title: string) {
-  console.log('title', title);
-  clickedTitle.value = title;
+const activeSection = ref('');
+const activeIndex = ref();
+const itemHeight = ref(0);
 
-  console.log('clickedTitle.value', clickedTitle.value);
+function scrollToSection(sectionId: string, index: number) {
+  console.log('부모 sectionId', sectionId);
+
+  const section = document.getElementById(sectionId);
+
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+    activeSection.value = sectionId;
+    activeIndex.value = index;
+    window.history.pushState(null, '', `#${sectionId}`);
+  }
 }
+
+onMounted(() => {
+  const items = document.querySelectorAll('li'); // 모든 li 요소 선택
+  if (items.length > 0) {
+    itemHeight.value = items[0].clientHeight; // 첫 번째 li의 높이 가져오기
+  }
+});
 </script>
 
 <template>
@@ -49,8 +66,7 @@ function handleClick(title: string) {
       <div class="mt-12 w-full">
         <DocItem
           title="Installation"
-          id="Installation"
-          @update:clickTitle="handleClick('Installation')"
+          id="installation"
           description="Simply pnpm/npm/yarn install the package."
           :shortCode="installCode"
           clipboardTitle="Terminal"
@@ -61,8 +77,7 @@ function handleClick(title: string) {
       <div class="mt-12 w-full">
         <DocItem
           title="Configuration"
-          id="Configuration"
-          @handleClick="handleClick('Configuration')"
+          id="configuration"
           description="MinimalCarousel is a required component that needs to be registered
           for use globally in your application. By adding this component, the
           default configuration is set up, allowing you to use it conveniently
@@ -76,8 +91,7 @@ function handleClick(title: string) {
       <div class="mt-12 w-full">
         <DocItem
           title="Add MinimalCarousel to your app"
-          id="Add MinimalCarousel to your app"
-          @handleClick="handleClick('Add MinimalCarousel to your app')"
+          id="add-minimal-carousel-to-your-app"
           description="It can be placed anywhere."
           :shortCode="usageCode"
           clipboardTitle="App.vue"
@@ -103,23 +117,47 @@ function handleClick(title: string) {
         <p>On this page</p>
       </div>
 
-      <ul class="flex flex-col gap-2 mt-4 border-l-[1px] border-dotted">
-        <li class="h-fit flex">
-          <a href="#installation" class="text-[13px] ml-5 h-5">
-            Installation
-          </a>
-        </li>
-        <li class="h-fit flex">
-          <a href="#configuration" class="text-[13px] ml-5 h-5">
-            Configuration
-          </a>
-        </li>
-        <li class="h-fit flex">
-          <a href="#add-minimal-carousel" class="text-[13px] ml-5 h-5">
-            Add MinimalCarousel to your app
-          </a>
-        </li>
-      </ul>
+      <div class="relative">
+        <div
+          v-if="activeIndex !== null"
+          aria-hidden="true"
+          class="w-[3px] h-5 bg-black absolute left-0 rounded-full"
+          :style="{
+            top: `${activeIndex * itemHeight}px`,
+            transition: 'top 0.25s',
+          }"
+        />
+
+        <ul class="flex flex-col gap-2 mt-4 border-l-[1px] border-dotted">
+          <li class="h-fit flex">
+            <a
+              href="#installation"
+              class="text-[13px] ml-5 h-5"
+              @click="scrollToSection('installation', 0)"
+            >
+              Installation
+            </a>
+          </li>
+          <li class="h-fit flex">
+            <a
+              href="#configuration"
+              class="text-[13px] ml-5 h-5"
+              @click="scrollToSection('configuration', 1)"
+            >
+              Configuration
+            </a>
+          </li>
+          <li class="h-fit flex">
+            <a
+              href="#add-minimal-carousel-to-your-app"
+              class="text-[13px] ml-5 h-5"
+              @click="scrollToSection('add-minimal-carousel-to-your-app', 2)"
+            >
+              Add MinimalCarousel to your app
+            </a>
+          </li>
+        </ul>
+      </div>
     </aside>
   </div>
 </template>

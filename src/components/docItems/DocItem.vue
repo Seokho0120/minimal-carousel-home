@@ -73,14 +73,31 @@ function scrollToSection(sectionId: string) {
 
 <template>
   <div>
-    <h2
+    <div
       v-if="title"
-      class="font-bold text-xl mb-4 text-neutral-800"
+      class="font-bold text-xl mb-4 text-neutral-800 flex items-center gap-2 group hover:cursor-pointer"
       :id="id"
       @click="scrollToSection(id || '')"
     >
-      {{ title }}
-    </h2>
+      <h2>{{ title }}</h2>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        class="text-neutral-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+      >
+        <path
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+        />
+      </svg>
+    </div>
     <div v-if="description" class="text-neutral-500">
       {{ description }}
     </div>
