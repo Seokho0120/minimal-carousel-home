@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 const installCode = `pnpm i minimal-carousel`;
@@ -28,29 +28,26 @@ const app = createApp(App)
 app.component('MinimalCarousel', MinimalCarousel);
 `;
 
-const activeSection = ref('');
-const activeIndex = ref(0);
-const itemHeight = ref(0);
+const activeIndex = ref<number>(0);
+const itemHeight = ref<number>(28);
+const anchorLinksItems = ref([
+  { id: 'installation', title: 'Installation' },
+  { id: 'configuration', title: 'Configuration' },
+  {
+    id: 'add-minimal-carousel-to-your-app',
+    title: 'Add MinimalCarousel to your app',
+  },
+]);
 
 function scrollToSection(sectionId: string, index: number) {
-  console.log('부모 sectionId', sectionId);
-
   const section = document.getElementById(sectionId);
 
   if (section) {
     section.scrollIntoView({ behavior: 'smooth' });
-    activeSection.value = sectionId;
     activeIndex.value = index;
     window.history.pushState(null, '', `#${sectionId}`);
   }
 }
-
-onMounted(() => {
-  const items = document.querySelectorAll('li'); // 모든 li 요소 선택
-  if (items.length > 0) {
-    itemHeight.value = items[0].clientHeight; // 첫 번째 li의 높이 가져오기
-  }
-});
 </script>
 
 <template>
@@ -69,6 +66,7 @@ onMounted(() => {
           :shortCode="installCode"
           clipboardTitle="Terminal"
           langBash
+          @click="scrollToSection('installation', 0)"
         />
       </div>
 
@@ -83,6 +81,7 @@ onMounted(() => {
           :shortCode="configCode"
           clipboardTitle="main.ts"
           langTsx
+          @click="scrollToSection('configuration', 1)"
         />
       </div>
 
@@ -93,11 +92,12 @@ onMounted(() => {
           description="It can be placed anywhere."
           :shortCode="usageCode"
           clipboardTitle="App.vue"
+          @click="scrollToSection('add-minimal-carousel-to-your-app', 2)"
         />
       </div>
     </div>
 
-    <!-- TODO: 타이틀을 클릭했을때 검은색이 움직이지 않음, 그리고 onMounted 부분 꼭 저렇게 해야하나;;  -->
+    <!-- aside 스타일 다시 체크해보기, 이해가 안감 -->
     <aside class="w-[240px] hidden xl:block sticky top-16 h-[calc(100vh-8rem)]">
       <div class="flex items-center gap-2 text-sm">
         <svg
@@ -122,37 +122,23 @@ onMounted(() => {
           aria-hidden="true"
           class="w-[3px] h-5 bg-black absolute left-0 rounded-full"
           :style="{
-            top: `${activeIndex * 28}px`,
+            top: `${activeIndex * itemHeight}px`,
             transition: 'top 0.3s',
           }"
         />
 
         <ul class="flex flex-col gap-2 mt-4 border-l-[1px] border-dotted">
-          <li class="h-fit flex">
+          <li
+            v-for="(item, index) in anchorLinksItems"
+            :key="item.id"
+            class="h-fit flex"
+          >
             <a
-              href="#installation"
+              :href="`#${item.id}`"
               class="text-[13px] ml-5 h-5"
-              @click="scrollToSection('installation', 0)"
+              @click="scrollToSection(item.id, index)"
             >
-              Installation
-            </a>
-          </li>
-          <li class="h-fit flex">
-            <a
-              href="#configuration"
-              class="text-[13px] ml-5 h-5"
-              @click="scrollToSection('configuration', 1)"
-            >
-              Configuration
-            </a>
-          </li>
-          <li class="h-fit flex">
-            <a
-              href="#add-minimal-carousel-to-your-app"
-              class="text-[13px] ml-5 h-5"
-              @click="scrollToSection('add-minimal-carousel-to-your-app', 2)"
-            >
-              Add MinimalCarousel to your app
+              {{ item.title }}
             </a>
           </li>
         </ul>

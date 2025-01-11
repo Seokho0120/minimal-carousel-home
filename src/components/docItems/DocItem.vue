@@ -8,15 +8,9 @@ const props = defineProps<{
   description?: string;
   shortCode?: string;
   longCode?: string;
-  example?: boolean;
   clipboardTitle?: string;
   langTsx?: boolean;
   langBash?: boolean;
-  id?: string;
-}>();
-
-const emit = defineEmits<{
-  'update:clickTitle': [value: string];
 }>();
 
 const highlightedLongCode = ref<string>('');
@@ -54,21 +48,6 @@ async function copyToClipBoard(type: 'short' | 'long') {
   await navigator.clipboard.writeText(codeToCopy || '');
   toast.success(`Copy code!`);
 }
-
-function scrollToSection(sectionId: string) {
-  console.log('sectionId??', sectionId);
-
-  const section = document.getElementById(sectionId);
-
-  console.log('section', section);
-
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' });
-    window.history.pushState(null, '', `#${sectionId}`); // URL에 앵커 추가
-  }
-
-  emit('update:clickTitle', props.title || '');
-}
 </script>
 
 <template>
@@ -76,8 +55,6 @@ function scrollToSection(sectionId: string) {
     <div
       v-if="title"
       class="font-bold text-xl mb-4 text-neutral-800 flex items-center gap-2 group hover:cursor-pointer"
-      :id="id"
-      @click="scrollToSection(id || '')"
     >
       <h2>{{ title }}</h2>
 
