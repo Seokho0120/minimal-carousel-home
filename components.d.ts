@@ -34,6 +34,7 @@ declare module 'vue' {
     Scrollbar: typeof import('./src/components/Scrollbar.vue')['default']
     ShowNextButton: typeof import('./src/components/ShowNextButton.vue')['default']
     ShowPrevButton: typeof import('./src/components/ShowPrevButton.vue')['default']
+    SideBar: typeof import('./src/components/docItems/sideBar.vue')['default']
     StopOnLastSlide: typeof import('./src/components/StopOnLastSlide.vue')['default']
   }
 }
