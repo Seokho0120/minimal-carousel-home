@@ -92,14 +92,14 @@ const categories = ref([
           :key="item.name"
           class="h-7 flex items-center"
         >
-          <RouterLink
+          <router-link
             :to="{
               name: item.name,
             }"
             :class="['h-7 flex items-center px-2 rounded-md w-full']"
           >
             {{ item.lnbName }}
-          </RouterLink>
+          </router-link>
         </li>
       </ul>
     </div>

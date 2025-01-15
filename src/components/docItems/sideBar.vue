@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import type { anchorLinksItemsType } from '../GettingStarted.vue';
 
@@ -12,8 +12,22 @@ const itemHeight = ref(28);
 const route = useRoute();
 const hash = computed(() => route.hash);
 
-const activeIndex = computed(() =>
-  props.anchorLinksItems.findIndex((item) => item.id === hash.value.slice(1)),
+const activeIndex = computed(() => {
+  if (hash.value) {
+    const index = props.anchorLinksItems.findIndex(
+      (item) => item.id === hash.value.slice(1),
+    );
+    return index !== -1 ? index : 0;
+  }
+  return 0;
+});
+
+watch(
+  activeIndex,
+  () => {
+    console.log('activeIndex.value', activeIndex.value);
+  },
+  { immediate: true },
 );
 </script>
 
