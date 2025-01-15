@@ -1,14 +1,5 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
-
-const route = useRoute();
-
-const currentPath = ref(route.path.replace('/docs/', ''));
-
-watch(route, (newRoute) => {
-  currentPath.value = newRoute.path.replace('/docs/', '');
-});
 
 const categories = ref([
   {
@@ -105,12 +96,7 @@ const categories = ref([
             :to="{
               name: item.name,
             }"
-            :class="[
-              'h-7 flex items-center px-2 rounded-md ',
-              currentPath === item.path
-                ? 'bg-[#f0f0f0] w-full'
-                : 'hover:bg-el-hover-bg',
-            ]"
+            :class="['h-7 flex items-center px-2 rounded-md w-full']"
           >
             {{ item.lnbName }}
           </RouterLink>
@@ -119,3 +105,9 @@ const categories = ref([
     </div>
   </div>
 </template>
+
+<style>
+.router-link-active {
+  background-color: #f0f0f0;
+}
+</style>

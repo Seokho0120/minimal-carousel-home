@@ -97,9 +97,46 @@ const router = createRouter({
       ],
     },
   ],
-  scrollBehavior() {
-    return { top: 0 }; // 항상 페이지 상단으로 스크롤
+
+  async scrollBehavior(to, _, savedPosition) {
+    // if (savedPosition) {
+    //   return savedPosition;
+    // }
+
+    function findEl(
+      hash: string,
+      x: number = 1,
+    ): HTMLElement | Promise<HTMLElement | undefined> {
+      return (
+        (document.querySelector(hash) as HTMLElement) ||
+        new Promise((resolve) => {
+          if (x > 50) {
+            return resolve(undefined);
+          }
+
+          setTimeout(() => {
+            resolve(findEl(hash, ++x));
+          }, 100);
+        })
+      );
+    }
+
+    if (to.hash) {
+      const el = await findEl(to.hash);
+
+      if ('scrollBehavior' in document.documentElement.style) {
+        return { top: el?.offsetTop, behavior: 'smooth' };
+      } else {
+        return { top: el?.offsetTop };
+      }
+    }
+
+    return { top: 0, left: 0 };
   },
+
+  // scrollBehavior() {
+  //   return { top: 0 }; // 항상 페이지 상단으로 스크롤
+  // },
 });
 
 export default router;

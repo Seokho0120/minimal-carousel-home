@@ -29,8 +29,6 @@ const app = createApp(App)
 app.component('MinimalCarousel', MinimalCarousel);
 `;
 
-const activeIndex = ref<number>(0);
-
 export interface anchorLinksItemsType {
   id: string;
   title: string;
@@ -44,20 +42,6 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
     title: 'Add MinimalCarousel to your app',
   },
 ]);
-
-function scrollToSection(sectionId: string, index: number) {
-  const section = document.getElementById(sectionId);
-
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' });
-    activeIndex.value = index;
-    window.history.pushState(null, '', `#${sectionId}`);
-  }
-}
-
-function updateIndex(index: number) {
-  activeIndex.value = index;
-}
 </script>
 
 <template>
@@ -76,7 +60,6 @@ function updateIndex(index: number) {
           :shortCode="installCode"
           clipboardTitle="Terminal"
           langBash
-          @click="scrollToSection('installation', 0)"
         />
       </div>
 
@@ -91,7 +74,6 @@ function updateIndex(index: number) {
           :shortCode="configCode"
           clipboardTitle="main.ts"
           langTsx
-          @click="scrollToSection('configuration', 1)"
         />
       </div>
 
@@ -102,15 +84,10 @@ function updateIndex(index: number) {
           description="It can be placed anywhere."
           :shortCode="usageCode"
           clipboardTitle="App.vue"
-          @click="scrollToSection('add-minimal-carousel-to-your-app', 2)"
         />
       </div>
     </div>
 
-    <SideBar
-      :anchorLinksItems="anchorLinksItems"
-      :activeIndex="activeIndex"
-      @update:update-index="updateIndex"
-    />
+    <SideBar :anchorLinksItems="anchorLinksItems" />
   </div>
 </template>

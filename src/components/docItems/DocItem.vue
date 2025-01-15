@@ -4,6 +4,7 @@ import { toast } from 'vue-sonner';
 import { createHighlighter, type Highlighter } from 'shiki';
 
 const props = defineProps<{
+  id: string;
   title?: string;
   description?: string;
   shortCode?: string;
@@ -51,12 +52,14 @@ async function copyToClipBoard(type: 'short' | 'long') {
 </script>
 
 <template>
-  <div>
+  <div :id="id">
     <div
       v-if="title"
       class="font-bold text-xl mb-4 text-neutral-800 flex items-center gap-2 group hover:cursor-pointer"
     >
-      <h2>{{ title }}</h2>
+      <a :href="`#${id}`">
+        <h2>{{ title }}</h2>
+      </a>
 
       <svg
         xmlns="http://www.w3.org/2000/svg"

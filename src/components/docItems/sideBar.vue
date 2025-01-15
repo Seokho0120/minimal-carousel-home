@@ -1,28 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import type { anchorLinksItemsType } from '../GettingStarted.vue';
 
-defineProps<{
+const props = defineProps<{
   anchorLinksItems: anchorLinksItemsType[];
-  activeIndex: number;
-}>();
-
-const emit = defineEmits<{
-  (e: 'update:update-index', index: number): void;
 }>();
 
 const itemHeight = ref(28);
 
-function scrollToSection(sectionId: string, index: number) {
-  const section = document.getElementById(sectionId);
+const route = useRoute();
+const hash = computed(() => route.hash);
 
-  if (section) {
-    emit('update:update-index', index);
-
-    section.scrollIntoView({ behavior: 'smooth' });
-    window.history.pushState(null, '', `#${sectionId}`);
-  }
-}
+const activeIndex = computed(() =>
+  props.anchorLinksItems.findIndex((item) => item.id === hash.value.slice(1)),
+);
 </script>
 
 <template>
@@ -55,16 +47,8 @@ function scrollToSection(sectionId: string, index: number) {
       />
 
       <ul class="flex flex-col gap-2 mt-4 border-l-[1px] border-dotted">
-        <li
-          v-for="(item, index) in anchorLinksItems"
-          :key="item.id"
-          class="h-fit flex"
-        >
-          <a
-            :href="`#${item.id}`"
-            class="text-[13px] ml-5 h-5"
-            @click="scrollToSection(item.id, index)"
-          >
+        <li v-for="item in anchorLinksItems" :key="item.id" class="h-fit flex">
+          <a :href="`#${item.id}`" class="text-[13px] ml-5 h-5">
             {{ item.title }}
           </a>
         </li>
