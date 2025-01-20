@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, onMounted, nextTick } from 'vue';
 import { useRoute } from 'vue-router';
 import type { anchorLinksItemsType } from '../GettingStarted.vue';
 
@@ -7,28 +7,59 @@ const props = defineProps<{
   anchorLinksItems: anchorLinksItemsType[];
 }>();
 
-const itemHeight = ref(28);
-
 const route = useRoute();
+const itemHeight = ref(28);
 const hash = computed(() => route.hash);
-
-const activeIndex = computed(() => {
-  if (hash.value) {
-    const index = props.anchorLinksItems.findIndex(
-      (item) => item.id === hash.value.slice(1),
-    );
-    return index !== -1 ? index : 0;
-  }
-  return 0;
-});
+const activeIndex = ref(0);
 
 watch(
-  activeIndex,
-  () => {
+  hash,
+  (newHash) => {
+    if (newHash) {
+      const index = props.anchorLinksItems.findIndex(
+        (item) => item.id === newHash.slice(1),
+      );
+
+      activeIndex.value = index !== -1 ? index : 0;
+    } else {
+      activeIndex.value = 0;
+    }
+
     console.log('activeIndex.value', activeIndex.value);
   },
   { immediate: true },
 );
+
+const determineActiveSection = () => {
+  for (let i = props.anchorLinksItems.length - 1; i >= 0; i--) {
+    const section = document.getElementById(props.anchorLinksItems[i].id);
+
+    console.log('section', section);
+
+    if (section) {
+      const rect = section.getBoundingClientRect();
+      console.log('rect.top', rect.top);
+      console.log('rect.bottom', rect.bottom);
+
+      if (rect.top <= 50 && rect.bottom >= 50) {
+        activeIndex.value = i;
+        break;
+      }
+    }
+  }
+};
+
+onMounted(() => {
+  const handleScroll = () => {
+    determineActiveSection();
+  };
+
+  window.addEventListener('scroll', handleScroll);
+
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+});
 </script>
 
 <template>
@@ -52,7 +83,6 @@ watch(
 
     <div class="relative">
       <div
-        v-if="activeIndex !== null"
         class="w-[3px] h-5 bg-black absolute left-0 rounded-full"
         :style="{
           top: `${activeIndex * itemHeight}px`,
