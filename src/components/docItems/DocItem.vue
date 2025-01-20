@@ -4,7 +4,7 @@ import { toast } from 'vue-sonner';
 import { createHighlighter, type Highlighter } from 'shiki';
 
 const props = defineProps<{
-  id: string;
+  id?: string;
   title?: string;
   description?: string;
   shortCode?: string;

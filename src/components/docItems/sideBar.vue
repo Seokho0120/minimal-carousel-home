@@ -30,6 +30,7 @@ watch(
   { immediate: true },
 );
 
+// TODO: rect 부분이 잘못된건지 모르겠음, embla-carousel도 나랑 같은 현상 발생하긴함..
 const determineActiveSection = () => {
   for (let i = props.anchorLinksItems.length - 1; i >= 0; i--) {
     const section = document.getElementById(props.anchorLinksItems[i].id);
@@ -41,7 +42,8 @@ const determineActiveSection = () => {
       console.log('rect.top', rect.top);
       console.log('rect.bottom', rect.bottom);
 
-      if (rect.top <= 50 && rect.bottom >= 50) {
+      if (rect.top <= 900 && rect.bottom >= 900) {
+        console.log('i', i);
         activeIndex.value = i;
         break;
       }
@@ -63,7 +65,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <aside class="w-[240px] hidden xl:block sticky top-16 h-[calc(100vh-8rem)]">
+  <aside class="w-[240px] sticky top-16 h-[calc(100vh-8rem)]">
+    <!-- <aside class="w-[240px] hidden xl:block sticky top-16 h-[calc(100vh-8rem)]"> -->
     <div class="flex items-center gap-2 text-sm">
       <svg
         xmlns="http://www.w3.org/2000/svg"

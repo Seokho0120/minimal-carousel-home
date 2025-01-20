@@ -6,6 +6,8 @@ import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import { MinimalCarousel } from 'minimal-carousel';
+import type { anchorLinksItemsType } from './GettingStarted.vue';
+import SideBar from './docItems/sideBar.vue';
 
 const typeCode = `showPrevButton: boolean;`;
 const exampleShortCode = `<MinimalCarousel showPrevButton/>`;
@@ -71,10 +73,19 @@ onMounted(async () => {
     theme: 'github-light',
   });
 });
+
+const anchorLinksItems = ref<anchorLinksItemsType[]>([
+  { id: 'example', title: 'Example' },
+  { id: 'custom', title: 'Custom' },
+  {
+    id: 'usage',
+    title: 'Usage',
+  },
+]);
 </script>
 
 <template>
-  <div class="py-16">
+  <div class="flex gap-4 py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
         title="ShowPrevButton"
@@ -93,6 +104,7 @@ onMounted(async () => {
       <div class="mt-12 w-full">
         <DocItem
           title="Example"
+          id="example"
           description="The default value of showPrevButton is true, and it will always be
           shown unless additional settings are applied."
           :shortCode="exampleShortCode"
@@ -127,6 +139,7 @@ onMounted(async () => {
       <div class="mt-12 w-full">
         <DocItem
           title="Custom"
+          id="custom"
           description="MinimalCarousel provides the ability to customize buttons. This allows
           users to implement buttons with their own styles and behaviors instead
           of using the default buttons."
@@ -151,39 +164,65 @@ onMounted(async () => {
           </template>
         </DocItem>
 
-        <h3 class="font-bold text-xl my-4 text-neutral-800">Usage</h3>
-        <div class="text-neutral-500">
-          <p class="font-bold text-neutral-800">#prev-btn</p>
-          <p>
-            This slot can be used to customize the previous button. By defining
-            the content of the slot, you can use a custom button instead of the
-            default provided previous button.
-          </p>
-
-          <div class="flex flex-col">
-            <p class="font-bold text-neutral-800 mt-6 mb-2">Properties</p>
-            <p class="font-semibold text-neutral-800 mb-1">defaultClass</p>
-            <p>
-              This is the default button class. You can easily apply styles to
-              the button, and you can also choose to customize it directly
-              without using this class.
-            </p>
-
-            <div
-              class="text-sm border rounded-lg shadow-sm mt-1 mb-6 overflow-hidden"
+        <div id="usage" class="group hover:cursor-pointer">
+          <a
+            href="#usage"
+            class="flex items-center gap-2 font-bold text-xl my-4 text-neutral-800"
+          >
+            <h2>Usage</h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              class="text-neutral-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
             >
-              <pre class="p-4" v-html="highlightedDefaultClassCode" />
-            </div>
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+              />
+            </svg>
+          </a>
 
-            <p class="font-semibold text-neutral-800 mb-1">goToPrev</p>
+          <div class="text-neutral-500">
+            <p class="font-bold text-neutral-800">#prev-btn</p>
             <p>
-              This is a method for showing the previous image. You can call this
-              method when the button is clicked to navigate the carousel to the
-              previous image.
+              This slot can be used to customize the previous button. By
+              defining the content of the slot, you can use a custom button
+              instead of the default provided previous button.
             </p>
+
+            <div class="flex flex-col">
+              <p class="font-bold text-neutral-800 mt-6 mb-2">Properties</p>
+              <p class="font-semibold text-neutral-800 mb-1">defaultClass</p>
+              <p>
+                This is the default button class. You can easily apply styles to
+                the button, and you can also choose to customize it directly
+                without using this class.
+              </p>
+
+              <div
+                class="text-sm border rounded-lg shadow-sm mt-1 mb-6 overflow-hidden"
+              >
+                <pre class="p-4" v-html="highlightedDefaultClassCode" />
+              </div>
+
+              <p class="font-semibold text-neutral-800 mb-1">goToPrev</p>
+              <p>
+                This is a method for showing the previous image. You can call
+                this method when the button is clicked to navigate the carousel
+                to the previous image.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <SideBar :anchorLinksItems="anchorLinksItems" />
   </div>
 </template>
