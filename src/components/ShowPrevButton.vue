@@ -77,10 +77,9 @@ onMounted(async () => {
 const anchorLinksItems = ref<anchorLinksItemsType[]>([
   { id: 'example', title: 'Example' },
   { id: 'custom', title: 'Custom' },
-  {
-    id: 'usage',
-    title: 'Usage',
-  },
+  { id: 'usage', title: 'Usage' },
+  { id: 'test1', title: 'Test1' },
+  { id: 'test2', title: 'Test2' },
 ]);
 </script>
 
@@ -136,7 +135,7 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
         </DocItem>
       </div>
 
-      <div class="mt-12 w-full">
+      <div class="flex flex-col gap-36 mt-12 w-full">
         <DocItem
           title="Custom"
           id="custom"
@@ -170,6 +169,120 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
             class="flex items-center gap-2 font-bold text-xl my-4 text-neutral-800"
           >
             <h2>Usage</h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              class="text-neutral-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+              />
+            </svg>
+          </a>
+
+          <div class="text-neutral-500">
+            <p class="font-bold text-neutral-800">#prev-btn</p>
+            <p>
+              This slot can be used to customize the previous button. By
+              defining the content of the slot, you can use a custom button
+              instead of the default provided previous button.
+            </p>
+
+            <div class="flex flex-col">
+              <p class="font-bold text-neutral-800 mt-6 mb-2">Properties</p>
+              <p class="font-semibold text-neutral-800 mb-1">defaultClass</p>
+              <p>
+                This is the default button class. You can easily apply styles to
+                the button, and you can also choose to customize it directly
+                without using this class.
+              </p>
+
+              <div
+                class="text-sm border rounded-lg shadow-sm mt-1 mb-6 overflow-hidden"
+              >
+                <pre class="p-4" v-html="highlightedDefaultClassCode" />
+              </div>
+
+              <p class="font-semibold text-neutral-800 mb-1">goToPrev</p>
+              <p>
+                This is a method for showing the previous image. You can call
+                this method when the button is clicked to navigate the carousel
+                to the previous image.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="test1" class="group hover:cursor-pointer">
+          <a
+            href="#test1"
+            class="flex items-center gap-2 font-bold text-xl my-4 text-neutral-800"
+          >
+            <h2>Test1</h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              class="text-neutral-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+              />
+            </svg>
+          </a>
+
+          <div class="text-neutral-500">
+            <p class="font-bold text-neutral-800">#prev-btn</p>
+            <p>
+              This slot can be used to customize the previous button. By
+              defining the content of the slot, you can use a custom button
+              instead of the default provided previous button.
+            </p>
+
+            <div class="flex flex-col">
+              <p class="font-bold text-neutral-800 mt-6 mb-2">Properties</p>
+              <p class="font-semibold text-neutral-800 mb-1">defaultClass</p>
+              <p>
+                This is the default button class. You can easily apply styles to
+                the button, and you can also choose to customize it directly
+                without using this class.
+              </p>
+
+              <div
+                class="text-sm border rounded-lg shadow-sm mt-1 mb-6 overflow-hidden"
+              >
+                <pre class="p-4" v-html="highlightedDefaultClassCode" />
+              </div>
+
+              <p class="font-semibold text-neutral-800 mb-1">goToPrev</p>
+              <p>
+                This is a method for showing the previous image. You can call
+                this method when the button is clicked to navigate the carousel
+                to the previous image.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="test2" class="group hover:cursor-pointer">
+          <a
+            href="#test2"
+            class="flex items-center gap-2 font-bold text-xl my-4 text-neutral-800"
+          >
+            <h2>Test2</h2>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

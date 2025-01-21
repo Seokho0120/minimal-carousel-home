@@ -24,32 +24,101 @@ watch(
     } else {
       activeIndex.value = 0;
     }
-
-    console.log('activeIndex.value', activeIndex.value);
   },
   { immediate: true },
 );
 
 // TODO: rect 부분이 잘못된건지 모르겠음, embla-carousel도 나랑 같은 현상 발생하긴함..
+// const determineActiveSection = () => {
+//   for (let i = props.anchorLinksItems.length - 1; i >= 0; i--) {
+//     const section = document.getElementById(props.anchorLinksItems[i].id);
+
+//     console.log('section', section);
+
+//     if (section) {
+//       const rect = section.getBoundingClientRect();
+//       console.log('rect.top', rect.top);
+//       console.log('rect.bottom', rect.bottom);
+
+//       if (rect.top <= 120 && rect.bottom >= 120) {
+//         console.log('i', i);
+//         activeIndex.value = i;
+//         break;
+//       }
+//     }
+//   }
+// };
+
+// 첫번째 섹션은 최상단, 마지막 섹션은 바닥, 나머지는 화면 중앙
+
 const determineActiveSection = () => {
-  for (let i = props.anchorLinksItems.length - 1; i >= 0; i--) {
-    const section = document.getElementById(props.anchorLinksItems[i].id);
+  const sections = props.anchorLinksItems.map((item) =>
+    document.getElementById(item.id),
+  );
 
-    console.log('section', section);
+  const top = window.scrollY; // 현재 스크롤 Y 값
+  const viewportHeight = window.innerHeight; // 뷰포트 높이
+  const documentHeight = document.body.scrollHeight; // 문서 전체 높이
+  const centerY = top + viewportHeight / 2; // 화면 중앙 Y 값
 
+  // 최상단에 닿았을 때 첫 번째 섹션
+  if (top === 0) {
+    activeIndex.value = 0;
+    return;
+  }
+
+  // 바닥에 닿았을 때 마지막 섹션
+  if (top + viewportHeight >= documentHeight) {
+    activeIndex.value = sections.length - 1; // 마지막 섹션
+    return;
+  }
+
+  sections.forEach((section, index) => {
     if (section) {
-      const rect = section.getBoundingClientRect();
-      console.log('rect.top', rect.top);
-      console.log('rect.bottom', rect.bottom);
+      const sectionTop = section.offsetTop; // 섹션의 상단 Y값
+      const sectionHeight = section.offsetHeight; // 섹션 높이
+      const sectionBottom = sectionTop + sectionHeight; // 섹션의 하단 Y값
 
-      if (rect.top <= 900 && rect.bottom >= 900) {
-        console.log('i', i);
-        activeIndex.value = i;
-        break;
+      // 화면의 중앙이 섹션의 범위 안에 있을 때
+      if (centerY >= sectionTop && centerY < sectionBottom) {
+        activeIndex.value = index; // 활성 인덱스 업데이트
       }
     }
-  }
+  });
 };
+
+// 최상단에 닿았을때 스크롤스파이 움직이게
+// const determineActiveSection2 = () => {
+//   const sections = props.anchorLinksItems.map((item) =>
+//     document.getElementById(item.id),
+//   );
+
+//   const top = window.scrollY; // 현재 스크롤 Y 값
+//   const viewportHeight = window.innerHeight; // 뷰포트 높이
+//   const documentHeight = document.body.scrollHeight; // 문서 전체 높이
+//   const centerY = top + viewportHeight / 2; // 화면 중앙 Y 값
+
+//   sections.forEach((section, index) => {
+//     if (section) {
+//       const sectionTop = section.offsetTop; // 섹션의 상단 Y값
+//       const sectionHeight = section.offsetHeight; // 섹션 높이
+//       const sectionBottom = sectionTop + sectionHeight; // 섹션의 하단 Y값
+
+//       // 화면의 중앙이 섹션의 범위 안에 있을 때
+//       if (centerY >= sectionTop && centerY < sectionBottom) {
+//         activeIndex.value = index; // 활성 인덱스 업데이트
+//       }
+
+//       // 마지막 섹션 처리
+//       if (
+//         index === sections.length - 1 &&
+//         top + viewportHeight >= documentHeight
+//       ) {
+//         activeIndex.value = index; // 스크롤이 맨 바닥에 닿았을 때 마지막 섹션 활성화
+//       }
+//     }
+//   });
+// };
 
 onMounted(() => {
   const handleScroll = () => {
@@ -66,6 +135,7 @@ onMounted(() => {
 
 <template>
   <aside class="w-[240px] sticky top-16 h-[calc(100vh-8rem)]">
+    <!-- FIXME: 개발편하게 hidden 지워놨음 -->
     <!-- <aside class="w-[240px] hidden xl:block sticky top-16 h-[calc(100vh-8rem)]"> -->
     <div class="flex items-center gap-2 text-sm">
       <svg
