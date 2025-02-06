@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted, nextTick } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import type { anchorLinksItemsType } from '../GettingStarted.vue';
 
@@ -29,7 +29,7 @@ watch(
 );
 
 // 첫번째 섹션은 최상단, 마지막 섹션은 바닥, 나머지는 화면 중앙
-const determineActiveSection = () => {
+function determineActiveSection() {
   const sections = props.anchorLinksItems.map((item) =>
     document.getElementById(item.id),
   );
@@ -63,7 +63,7 @@ const determineActiveSection = () => {
       }
     }
   });
-};
+}
 
 onMounted(() => {
   const handleScroll = () => {
@@ -78,40 +78,39 @@ onMounted(() => {
 });
 
 function scrollToSection(id: string) {
+  // 참고: https://www.moonkorea.dev/React-%EC%A0%91%EA%B7%BC%EC%84%B1-%EA%B0%9C%EC%84%A0%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%95%B4%EC%8B%9C-%EB%A7%81%ED%81%AC
   const section = document.getElementById(id);
-  console.log('section', section);
 
   if (section) {
-    const offset = 70; // 원하는 간격
-    const offsetPosition = section.offsetTop - offset; // 섹션의 상단 위치에서 오프셋을 뺀 위치
+    const yOffset = 70;
+    const offsetPosition = section.offsetTop - yOffset;
 
     window.scrollTo({
       top: offsetPosition,
       behavior: 'smooth',
     });
+
+    // 참고: https://velog.io/@kymkjh2002/IntersectionObserver%EC%9D%98-%EC%82%AC%EC%9A%A9%EB%B2%95
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // history.pushState는 페이지 리로드 하지 않고 페이지 주소만 변경할때 사용함
+            window.history.pushState(window.history.state, '', `#${id}`);
+            observer.disconnect(); // 완료 후 관찰자 해제
+          }
+        });
+      },
+      { threshold: 0.1 },
+    ); // 10%가 보일 때 트리거
+
+    observer.observe(section); // 관찰할 dom
   }
 }
-
-// const scrollToSection = (id) => {
-//   const section = document.getElementById(id);
-//   console.log('section', section);
-
-//   if (section) {
-//     const offset = 70; // 원하는 간격 조정
-//     const offsetPosition = section.offsetTop - offset; // 섹션의 상단 위치에서 오프셋을 뺀 위치
-
-//     window.scrollTo({
-//       top: offsetPosition,
-//       behavior: 'smooth',
-//     });
-//   }
-// };
 </script>
 
 <template>
-  <aside class="w-[240px] sticky top-16 h-[calc(100vh-8rem)]">
-    <!-- FIXME: 개발편하게 hidden 지워놨음 -->
-    <!-- <aside class="w-[240px] hidden xl:block sticky top-16 h-[calc(100vh-8rem)]"> -->
+  <aside class="w-[240px] hidden xl:block sticky top-16 h-[calc(100vh-8rem)]">
     <div class="flex items-center gap-2 text-sm">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -142,8 +141,8 @@ function scrollToSection(id: string) {
         <li v-for="item in anchorLinksItems" :key="item.id" class="h-fit flex">
           <a
             :href="`#${item.id}`"
-            class="text-[13px] ml-5 h-5"
             @click.prevent="scrollToSection(item.id)"
+            class="text-[13px] ml-5 h-5"
           >
             {{ item.title }}
           </a>
