@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { MinimalCarousel } from 'minimal-carousel';
 import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import { IMAGES } from '@/constants/ImgData';
+import type { anchorLinksItemsType } from './GettingStarted.vue';
+import SideBar from './docItems/sideBar.vue';
 
 const typeCode = `pagination: boolean;`;
 const exampleShortCode = `<MinimalCarousel pagination/>`;
@@ -23,10 +26,15 @@ const IMAGES = [
   <MinimalCarousel :imageItems="IMAGES" pagination/>
 <\/template>
 `;
+
+const anchorLinksItems = ref<anchorLinksItemsType[]>([
+  { id: 'type-of-pagination', title: 'Type of Pagination' },
+  { id: 'example', title: 'Example' },
+]);
 </script>
 
 <template>
-  <div class="py-16">
+  <div class="flex gap-4 py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
         title="Pagination"
@@ -35,6 +43,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItemType
+          id="type-of-pagination"
           title="Type of Pagination"
           description="The type of Pagination is boolean, and the default value is false."
           :shortCode="typeCode"
@@ -43,6 +52,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItem
+          id="example"
           title="Example"
           description="The default value for pagination is false. When set to true, the bullets will be displayed."
           :shortCode="exampleShortCode"
@@ -61,5 +71,7 @@ const IMAGES = [
         </DocItem>
       </div>
     </div>
+
+    <SideBar :anchorLinksItems="anchorLinksItems" />
   </div>
 </template>
