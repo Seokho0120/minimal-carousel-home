@@ -4,6 +4,9 @@ import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import { IMAGES } from '@/constants/ImgData';
+import { ref } from 'vue';
+import type { anchorLinksItemsType } from './GettingStarted.vue';
+import SideBar from './docItems/sideBar.vue';
 
 const typeCode = `pauseOnMouseEnter: boolean;`;
 const exampleShortCode = `<MinimalCarousel pauseOnMouseEnter autoPlay/>`;
@@ -23,10 +26,15 @@ const IMAGES = [
   <MinimalCarousel :imageItems="IMAGES" pauseOnMouseEnter autoPlay/>
 <\/template>
 `;
+
+const anchorLinksItems = ref<anchorLinksItemsType[]>([
+  { id: 'type-of-pauseOnMouseEnter', title: 'Type of PauseOnMouseEnter' },
+  { id: 'example', title: 'Example' },
+]);
 </script>
 
 <template>
-  <div class="py-16">
+  <div class="flex gap-4 py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
         title="PauseOnMouseEnter"
@@ -35,6 +43,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItemType
+          id="type-of-pauseOnMouseEnter"
           title="Type of PauseOnMouseEnter"
           description="The type of PauseOnMouseEnter is boolean, and the default value is false."
           :shortCode="typeCode"
@@ -43,6 +52,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItem
+          id="example"
           title="Example"
           description="The default value for pauseOnMouseEnter is false, and when set to true, autoplay will stop when the mouse hovers over the slides."
           :shortCode="exampleShortCode"
@@ -62,5 +72,7 @@ const IMAGES = [
         </DocItem>
       </div>
     </div>
+
+    <SideBar :anchorLinksItems="anchorLinksItems" />
   </div>
 </template>

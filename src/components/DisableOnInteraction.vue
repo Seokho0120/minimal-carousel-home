@@ -4,6 +4,9 @@ import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import { IMAGES } from '@/constants/ImgData';
+import { ref } from 'vue';
+import type { anchorLinksItemsType } from './GettingStarted.vue';
+import SideBar from './docItems/sideBar.vue';
 
 const typeCode = `disableOnInteraction: boolean;`;
 const exampleShortCode = `<MinimalCarousel :disableOnInteraction="false" autoPlay/>`;
@@ -23,10 +26,15 @@ const IMAGES = [
   <MinimalCarousel :imageItems="IMAGES" :disableOnInteraction="false" autoPlay/>
 <\/template>
 `;
+
+const anchorLinksItems = ref<anchorLinksItemsType[]>([
+  { id: 'type-of-disableOnInteraction', title: 'Type of DisableOnInteraction' },
+  { id: 'example', title: 'Example' },
+]);
 </script>
 
 <template>
-  <div class="py-16">
+  <div class="flex gap-4 py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
         title="DisableOnInteraction"
@@ -35,6 +43,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItemType
+          id="type-of-disableOnInteraction"
           title="Type of DisableOnInteraction"
           description="The type of DisableOnInteraction is boolean, and the default value is true."
           :shortCode="typeCode"
@@ -43,6 +52,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItem
+          id="example"
           title="Example"
           description="The default value for disableOnInteraction is true, and when set to false, autoplay will not be disabled during interactions."
           :shortCode="exampleShortCode"
@@ -62,5 +72,7 @@ const IMAGES = [
         </DocItem>
       </div>
     </div>
+
+    <SideBar :anchorLinksItems="anchorLinksItems" />
   </div>
 </template>
