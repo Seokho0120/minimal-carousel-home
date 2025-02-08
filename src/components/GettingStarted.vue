@@ -88,12 +88,12 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
       </div>
 
       <!-- TODO: 스크롤스파이 만들고 개발 -->
-      <div class="flex flex-col mt-12 ml-auto items-end">
+      <!-- <div class="flex flex-col mt-12 ml-auto items-end">
         <div>
           <p>Next</p>
           <button>ImageItems ></button>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <SideBar :anchorLinksItems="anchorLinksItems" />

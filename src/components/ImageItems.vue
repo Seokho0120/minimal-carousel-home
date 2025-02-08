@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { IMAGES } from '@/constants/ImgData';
 import DocIntro from './docItems/DocIntro.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import DocItem from './docItems/DocItem.vue';
 import { MinimalCarousel } from 'minimal-carousel';
+import type { anchorLinksItemsType } from './GettingStarted.vue';
+import SideBar from './docItems/sideBar.vue';
 
 const typeCode = `imageItems: {
   link: string;
@@ -30,10 +33,15 @@ const IMAGES = [
   <MinimalCarousel :imageItems="IMAGES"/>
 <\/template>
 `;
+
+const anchorLinksItems = ref<anchorLinksItemsType[]>([
+  { id: 'type-of-imageItems', title: 'Type of ImageItems' },
+  { id: 'example', title: 'Example' },
+]);
 </script>
 
 <template>
-  <div class="py-16">
+  <div class="flex gap-4 py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
         title="ImageItems"
@@ -44,6 +52,7 @@ const IMAGES = [
       <div class="mt-12 w-full">
         <DocItemType
           title="Type of ImageItems"
+          id="type-of-imageItems"
           description="link is a required value, while id and name are optional values."
           :shortCode="typeCode"
         />
@@ -52,6 +61,7 @@ const IMAGES = [
       <div class="mt-12 w-full">
         <DocItem
           title="Example"
+          id="example"
           description="If you set id and name as shown in the example, you can use the
           carousel with higher quality."
           :shortCode="exampleShortCode"
@@ -66,5 +76,7 @@ const IMAGES = [
         </DocItem>
       </div>
     </div>
+
+    <SideBar :anchorLinksItems="anchorLinksItems" />
   </div>
 </template>

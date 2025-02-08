@@ -77,6 +77,8 @@ onMounted(() => {
   };
 });
 
+// TODO: smooth기능과 브라우저 상단과 타이틀에 간격을 주기 위해 scrollToSection 함수 사용
+// TODO: 함수를 사용안하고, a태그의 href를 사용할 수 있는 방법이 있다면 변경 예정
 function scrollToSection(id: string) {
   // 참고: https://www.moonkorea.dev/React-%EC%A0%91%EA%B7%BC%EC%84%B1-%EA%B0%9C%EC%84%A0%EC%9D%84-%EC%9C%84%ED%95%9C-%ED%95%B4%EC%8B%9C-%EB%A7%81%ED%81%AC
   const section = document.getElementById(id);
@@ -104,7 +106,7 @@ function scrollToSection(id: string) {
       { threshold: 0.1 },
     ); // 10%가 보일 때 트리거
 
-    observer.observe(section); // 관찰할 dom
+    observer.observe(section); // 관찰할 dom 설정
   }
 }
 </script>
@@ -139,13 +141,20 @@ function scrollToSection(id: string) {
 
       <ul class="flex flex-col gap-2 mt-4 border-l-[1px] border-dotted">
         <li v-for="item in anchorLinksItems" :key="item.id" class="h-fit flex">
-          <a
+          <p
+            @click.prevent="scrollToSection(item.id)"
+            class="text-[13px] ml-5 h-5 cursor-pointer"
+          >
+            {{ item.title }}
+          </p>
+
+          <!-- <a
             :href="`#${item.id}`"
             @click.prevent="scrollToSection(item.id)"
             class="text-[13px] ml-5 h-5"
           >
             {{ item.title }}
-          </a>
+          </a> -->
         </li>
       </ul>
     </div>
