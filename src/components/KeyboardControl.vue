@@ -4,6 +4,9 @@ import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import { IMAGES } from '@/constants/ImgData';
+import { ref } from 'vue';
+import type { anchorLinksItemsType } from './GettingStarted.vue';
+import SideBar from './docItems/sideBar.vue';
 
 const typeCode = `keyboardControl: boolean;`;
 const exampleShortCode = `<MinimalCarousel keyboardControl />`;
@@ -23,10 +26,15 @@ const IMAGES = [
   <MinimalCarousel :imageItems="IMAGES" keyboardControl />
 <\/template>
 `;
+
+const anchorLinksItems = ref<anchorLinksItemsType[]>([
+  { id: 'type-of-keyboardControl', title: 'Type of KeyboardControl' },
+  { id: 'example', title: 'Example' },
+]);
 </script>
 
 <template>
-  <div class="py-16">
+  <div class="flex gap-4 py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
         title="KeyboardControl"
@@ -35,6 +43,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItemType
+          id="type-of-keyboardControl"
           title="Type of KeyboardControl"
           description="The type of KeyboardControl is boolean, and the default value is false."
           :shortCode="typeCode"
@@ -43,6 +52,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItem
+          id="example"
           title="Example"
           description="The default value for keyboardControl is false, and when set to true, users can control the slides with the keyboard."
           :shortCode="exampleShortCode"
@@ -61,5 +71,7 @@ const IMAGES = [
         </DocItem>
       </div>
     </div>
+
+    <SideBar :anchorLinksItems="anchorLinksItems" />
   </div>
 </template>
