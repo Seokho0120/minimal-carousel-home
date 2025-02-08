@@ -4,6 +4,9 @@ import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import { IMAGES } from '@/constants/ImgData';
+import { ref } from 'vue';
+import type { anchorLinksItemsType } from './GettingStarted.vue';
+import SideBar from './docItems/sideBar.vue';
 
 const typeCode = `contents: {
   title: string;
@@ -43,10 +46,15 @@ const sliderContents = [
   { title: 'Title 4', subTitle: 'Subtitle 4', content: 'Content 4' },
   { title: 'Title 5', subTitle: 'Subtitle 5', content: 'Content 5' },
 ];
+
+const anchorLinksItems = ref<anchorLinksItemsType[]>([
+  { id: 'type-of-contents', title: 'Type of Contents' },
+  { id: 'example', title: 'Example' },
+]);
 </script>
 
 <template>
-  <div class="py-16">
+  <div class="flex gap-4 py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
         title="Contents"
@@ -55,6 +63,7 @@ const sliderContents = [
 
       <div class="mt-12 w-full">
         <DocItemType
+          id="type-of-contents"
           title="Type of Contents"
           description="The title in contents is required, while both subTitle and content are optional and must be of type string."
           :shortCode="typeCode"
@@ -63,6 +72,7 @@ const sliderContents = [
 
       <div class="mt-12 w-full">
         <DocItem
+          id="example"
           title="Example"
           description="Users can add the desired title, subtitle, and content for each image, with the title being mandatory."
           :shortCode="exampleShortCode"
@@ -81,5 +91,7 @@ const sliderContents = [
         </DocItem>
       </div>
     </div>
+
+    <SideBar :anchorLinksItems="anchorLinksItems" />
   </div>
 </template>
