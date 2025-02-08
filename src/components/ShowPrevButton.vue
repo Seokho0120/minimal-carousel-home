@@ -75,6 +75,7 @@ onMounted(async () => {
 });
 
 const anchorLinksItems = ref<anchorLinksItemsType[]>([
+  { id: 'type-of-showPrevButton', title: 'Type of ShowPrevButton' },
   { id: 'example', title: 'Example' },
   { id: 'custom', title: 'Custom' },
   { id: 'usage', title: 'Usage' },
@@ -92,6 +93,7 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
 
       <div class="mt-12 w-full">
         <DocItemType
+          id="type-of-showPrevButton"
           title="Type of ShowPrevButton"
           description="The type of showPrevButton is boolean, and the default value is true."
           :shortCode="typeCode"
