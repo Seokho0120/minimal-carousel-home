@@ -4,6 +4,9 @@ import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import { IMAGES } from '@/constants/ImgData';
+import { ref } from 'vue';
+import type { anchorLinksItemsType } from './GettingStarted.vue';
+import SideBar from './docItems/sideBar.vue';
 
 const typeCode = `autoPlay: boolean;`;
 const exampleShortCode = `<MinimalCarousel autoPlay/>`;
@@ -23,10 +26,15 @@ const IMAGES = [
   <MinimalCarousel :imageItems="IMAGES" autoPlay/>
 <\/template>
 `;
+
+const anchorLinksItems = ref<anchorLinksItemsType[]>([
+  { id: 'type-of-autoPlay', title: 'Type of AutoPlay' },
+  { id: 'example', title: 'Example' },
+]);
 </script>
 
 <template>
-  <div class="py-16">
+  <div class="flex gap-4 py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
         title="AutoPlay"
@@ -35,6 +43,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItemType
+          id="type-of-autoPlay"
           title="Type of AutoPlay"
           description="The type of AutoPlay is boolean, and the default value is false."
           :shortCode="typeCode"
@@ -43,6 +52,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItem
+          id="example"
           title="Example"
           description="The default value for autoplay is false. When set to true, the slides will automatically transition every 2500(2.5sec) seconds. If the user drags the slides or clicks a button, the autoplay will pause automatically."
           :shortCode="exampleShortCode"
@@ -61,5 +71,7 @@ const IMAGES = [
         </DocItem>
       </div>
     </div>
+
+    <SideBar :anchorLinksItems="anchorLinksItems" />
   </div>
 </template>
