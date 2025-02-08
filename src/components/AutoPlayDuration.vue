@@ -4,6 +4,9 @@ import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 import DocItemType from './docItems/DocItemType.vue';
 import { IMAGES } from '@/constants/ImgData';
+import { ref } from 'vue';
+import type { anchorLinksItemsType } from './GettingStarted.vue';
+import SideBar from './docItems/sideBar.vue';
 
 const typeCode = `autoPlayDuration: number;`;
 const exampleShortCode = `<MinimalCarousel :autoPlayDuration="3500" autoplay/>`;
@@ -27,10 +30,15 @@ const IMAGES = [
   />
 <\/template>
 `;
+
+const anchorLinksItems = ref<anchorLinksItemsType[]>([
+  { id: 'type-of-autoPlayDuration', title: 'Type of AutoPlayDuration' },
+  { id: 'example', title: 'Example' },
+]);
 </script>
 
 <template>
-  <div class="py-16">
+  <div class="flex gap-4 py-16">
     <div class="max-w-[642px] w-full mx-auto">
       <DocIntro
         title="AutoPlayDuration"
@@ -39,6 +47,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItemType
+          id="type-of-autoPlayDuration"
           title="Type of AutoPlayDuration"
           description="The type of autoPlayDuration is number, and the default value is 2500(2.5sec)."
           :shortCode="typeCode"
@@ -47,6 +56,7 @@ const IMAGES = [
 
       <div class="mt-12 w-full">
         <DocItem
+          id="example"
           title="Example"
           description="The default value for autoPlayDuration is 2500(2.5sec), and users can customize it to their preferred duration."
           :shortCode="exampleShortCode"
@@ -66,5 +76,7 @@ const IMAGES = [
         </DocItem>
       </div>
     </div>
+
+    <SideBar :anchorLinksItems="anchorLinksItems" />
   </div>
 </template>
