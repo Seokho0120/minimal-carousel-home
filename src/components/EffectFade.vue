@@ -7,6 +7,7 @@ import { IMAGES } from '@/constants/ImgData';
 import { ref } from 'vue';
 import type { anchorLinksItemsType } from './GettingStarted.vue';
 import SideBar from './docItems/sideBar.vue';
+import NavPagination, { type Items } from './nav/NavPagination.vue';
 
 const typeCode = `effectFade: boolean;`;
 const exampleShortCode = `<MinimalCarousel effectFade />`;
@@ -30,6 +31,11 @@ const IMAGES = [
 const anchorLinksItems = ref<anchorLinksItemsType[]>([
   { id: 'type-of-effectFade', title: 'Type of EffectFade' },
   { id: 'example', title: 'Example' },
+]);
+
+const paginationItems = ref<Items[]>([
+  { name: 'stopOnLastSlide', pageName: 'StopOnLastSlide' },
+  { name: 'keyboardControl', pageName: 'KeyboardControl' },
 ]);
 </script>
 
@@ -70,6 +76,8 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
           </template>
         </DocItem>
       </div>
+
+      <NavPagination :items="paginationItems" />
     </div>
 
     <SideBar :anchorLinksItems="anchorLinksItems" />
