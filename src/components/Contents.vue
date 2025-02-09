@@ -7,6 +7,8 @@ import { IMAGES } from '@/constants/ImgData';
 import { ref } from 'vue';
 import type { anchorLinksItemsType } from './GettingStarted.vue';
 import SideBar from './docItems/sideBar.vue';
+import type { Items } from './nav/NavPagination.vue';
+import NavPagination from './nav/NavPagination.vue';
 
 const typeCode = `contents: {
   title: string;
@@ -51,6 +53,10 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
   { id: 'type-of-contents', title: 'Type of Contents' },
   { id: 'example', title: 'Example' },
 ]);
+
+const paginationItems = ref<Items[]>([
+  { name: 'keyboardControl', pageName: 'KeyboardControl' },
+]);
 </script>
 
 <template>
@@ -90,6 +96,8 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
           </template>
         </DocItem>
       </div>
+
+      <NavPagination :items="paginationItems" />
     </div>
 
     <SideBar :anchorLinksItems="anchorLinksItems" />
