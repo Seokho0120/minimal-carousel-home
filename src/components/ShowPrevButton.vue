@@ -8,6 +8,8 @@ import DocItemType from './docItems/DocItemType.vue';
 import { MinimalCarousel } from 'minimal-carousel';
 import type { anchorLinksItemsType } from './GettingStarted.vue';
 import SideBar from './docItems/sideBar.vue';
+import type { Items } from './nav/NavPagination.vue';
+import NavPagination from './nav/NavPagination.vue';
 
 const typeCode = `showPrevButton: boolean;`;
 const exampleShortCode = `<MinimalCarousel showPrevButton/>`;
@@ -79,6 +81,11 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
   { id: 'example', title: 'Example' },
   { id: 'custom', title: 'Custom' },
   { id: 'usage', title: 'Usage' },
+]);
+
+const paginationItems = ref<Items[]>([
+  { name: 'imageItems', pageName: 'ImageItems' },
+  { name: 'showNextButton', pageName: 'ShowNextButton' },
 ]);
 </script>
 
@@ -219,6 +226,8 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
             </div>
           </div>
         </div>
+
+        <NavPagination :items="paginationItems" />
       </div>
     </div>
 
