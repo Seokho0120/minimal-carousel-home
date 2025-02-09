@@ -7,6 +7,8 @@ import { IMAGES } from '@/constants/ImgData';
 import { ref } from 'vue';
 import type { anchorLinksItemsType } from './GettingStarted.vue';
 import SideBar from './docItems/sideBar.vue';
+import type { Items } from './nav/NavPagination.vue';
+import NavPagination from './nav/NavPagination.vue';
 
 const typeCode = `stopOnLastSlide: boolean;`;
 const exampleShortCode = `<MinimalCarousel stopOnLastSlide autoPlay/>`;
@@ -30,6 +32,11 @@ const IMAGES = [
 const anchorLinksItems = ref<anchorLinksItemsType[]>([
   { id: 'type-of-stopOnLastSlide', title: 'Type of StopOnLastSlide' },
   { id: 'example', title: 'Example' },
+]);
+
+const paginationItems = ref<Items[]>([
+  { name: 'pauseOnMouseEnter', pageName: 'PauseOnMouseEnter' },
+  { name: 'effectFade', pageName: 'EffectFade' },
 ]);
 </script>
 
@@ -71,6 +78,8 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
           </template>
         </DocItem>
       </div>
+
+      <NavPagination :items="paginationItems" />
     </div>
 
     <SideBar :anchorLinksItems="anchorLinksItems" />

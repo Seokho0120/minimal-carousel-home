@@ -7,6 +7,7 @@ import { IMAGES } from '@/constants/ImgData';
 import { ref } from 'vue';
 import type { anchorLinksItemsType } from './GettingStarted.vue';
 import SideBar from './docItems/sideBar.vue';
+import NavPagination, { type Items } from './nav/NavPagination.vue';
 
 const typeCode = `pauseOnMouseEnter: boolean;`;
 const exampleShortCode = `<MinimalCarousel pauseOnMouseEnter autoPlay/>`;
@@ -30,6 +31,11 @@ const IMAGES = [
 const anchorLinksItems = ref<anchorLinksItemsType[]>([
   { id: 'type-of-pauseOnMouseEnter', title: 'Type of PauseOnMouseEnter' },
   { id: 'example', title: 'Example' },
+]);
+
+const paginationItems = ref<Items[]>([
+  { name: 'disableOnInteraction', pageName: 'DisableOnInteraction' },
+  { name: 'stopOnLastSlide', pageName: 'StopOnLastSlide' },
 ]);
 </script>
 
@@ -71,6 +77,8 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
           </template>
         </DocItem>
       </div>
+
+      <NavPagination :items="paginationItems" />
     </div>
 
     <SideBar :anchorLinksItems="anchorLinksItems" />
