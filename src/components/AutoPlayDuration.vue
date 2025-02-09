@@ -7,6 +7,7 @@ import { IMAGES } from '@/constants/ImgData';
 import { ref } from 'vue';
 import type { anchorLinksItemsType } from './GettingStarted.vue';
 import SideBar from './docItems/sideBar.vue';
+import NavPagination, { type Items } from './nav/NavPagination.vue';
 
 const typeCode = `autoPlayDuration: number;`;
 const exampleShortCode = `<MinimalCarousel :autoPlayDuration="3500" autoplay/>`;
@@ -34,6 +35,11 @@ const IMAGES = [
 const anchorLinksItems = ref<anchorLinksItemsType[]>([
   { id: 'type-of-autoPlayDuration', title: 'Type of AutoPlayDuration' },
   { id: 'example', title: 'Example' },
+]);
+
+const paginationItems = ref<Items[]>([
+  { name: 'autoPlay', pageName: 'AutoPlay' },
+  { name: 'disableOnInteraction', pageName: 'DisableOnInteraction' },
 ]);
 </script>
 
@@ -75,6 +81,8 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
           </template>
         </DocItem>
       </div>
+
+      <NavPagination :items="paginationItems" />
     </div>
 
     <SideBar :anchorLinksItems="anchorLinksItems" />
