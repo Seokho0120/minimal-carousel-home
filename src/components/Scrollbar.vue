@@ -36,7 +36,7 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
 
 const paginationItems = ref<Items[]>([
   { name: 'dynamicBullets', pageName: 'DynamicBullets' },
-  { name: 'autoPlayDuration', pageName: 'AutoPlayDuration' },
+  { name: 'autoPlay', pageName: 'AutoPlay' },
 ]);
 </script>
 
