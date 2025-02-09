@@ -12,7 +12,7 @@ export interface Items {
 <template>
   <div class="flex items-center border-t my-16 pt-8 group">
     <router-link
-      v-if="items.length > 1"
+      v-if="items.length > 1 || items[0].name === 'keyboardControl'"
       :to="{ name: items[0].name }"
       :key="items[0].name"
       class="items-end"
@@ -40,7 +40,7 @@ export interface Items {
     </router-link>
 
     <router-link
-      v-if="items.length > 0"
+      v-if="items.length > 0 && items[0].name !== 'keyboardControl'"
       :to="{ name: items[items.length - 1].name }"
       :key="items[items.length - 1].name"
       class="flex items-end ml-auto"
