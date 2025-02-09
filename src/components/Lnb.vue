@@ -106,7 +106,7 @@ const categories = ref([
   </div>
 </template>
 
-<style>
+<style scoped lang="scss">
 .router-link-active {
   background-color: #f0f0f0;
 }

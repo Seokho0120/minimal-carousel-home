@@ -7,6 +7,8 @@ import DocItem from './docItems/DocItem.vue';
 import { MinimalCarousel } from 'minimal-carousel';
 import type { anchorLinksItemsType } from './GettingStarted.vue';
 import SideBar from './docItems/sideBar.vue';
+import type { Items } from './nav/NavPagination.vue';
+import NavPagination from './nav/NavPagination.vue';
 
 const typeCode = `imageItems: {
   link: string;
@@ -37,6 +39,11 @@ const IMAGES = [
 const anchorLinksItems = ref<anchorLinksItemsType[]>([
   { id: 'type-of-imageItems', title: 'Type of ImageItems' },
   { id: 'example', title: 'Example' },
+]);
+
+const paginationItems = ref<Items[]>([
+  { name: 'getting started', pageName: 'Getting Started' },
+  { name: 'showPrevButton', pageName: 'ShowPrevButton' },
 ]);
 </script>
 
@@ -75,6 +82,8 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
           </template>
         </DocItem>
       </div>
+
+      <NavPagination :items="paginationItems" />
     </div>
 
     <SideBar :anchorLinksItems="anchorLinksItems" />

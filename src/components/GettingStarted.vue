@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import DocIntro from './docItems/DocIntro.vue';
 import DocItem from './docItems/DocItem.vue';
 import SideBar from './docItems/sideBar.vue';
+import NavPagination, { type Items } from './nav/NavPagination.vue';
 const installCode = `pnpm i minimal-carousel`;
 const usageCode = `<script setup lang='ts'>
 import img1 from '../img1.jpg';
@@ -41,6 +42,10 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
     id: 'add-minimal-carousel-to-your-app',
     title: 'Add MinimalCarousel to your app',
   },
+]);
+
+const paginationItems = ref<Items[]>([
+  { name: 'imageItems', pageName: 'ImageItems' },
 ]);
 </script>
 
@@ -87,13 +92,7 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
         />
       </div>
 
-      <!-- TODO: 스크롤스파이 만들고 개발 -->
-      <!-- <div class="flex flex-col mt-12 ml-auto items-end">
-        <div>
-          <p>Next</p>
-          <button>ImageItems ></button>
-        </div>
-      </div> -->
+      <NavPagination :items="paginationItems" />
     </div>
 
     <SideBar :anchorLinksItems="anchorLinksItems" />

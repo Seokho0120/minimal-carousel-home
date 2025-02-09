@@ -27,6 +27,7 @@ declare module 'vue' {
     'IMynaui:terminalSolid': typeof import('~icons/mynaui/terminal-solid')['default']
     KeyboardControl: typeof import('./src/components/KeyboardControl.vue')['default']
     Lnb: typeof import('./src/components/Lnb.vue')['default']
+    NavPagination: typeof import('./src/components/nav/NavPagination.vue')['default']
     Pagination: typeof import('./src/components/Pagination.vue')['default']
     PauseOnMouseEnter: typeof import('./src/components/PauseOnMouseEnter.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
