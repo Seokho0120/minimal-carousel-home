@@ -7,6 +7,8 @@ import DocItemType from './docItems/DocItemType.vue';
 import { IMAGES } from '@/constants/ImgData';
 import type { anchorLinksItemsType } from './GettingStarted.vue';
 import SideBar from './docItems/sideBar.vue';
+import type { Items } from './nav/NavPagination.vue';
+import NavPagination from './nav/NavPagination.vue';
 
 const typeCode = `pagination: boolean;`;
 const exampleShortCode = `<MinimalCarousel pagination/>`;
@@ -30,6 +32,11 @@ const IMAGES = [
 const anchorLinksItems = ref<anchorLinksItemsType[]>([
   { id: 'type-of-pagination', title: 'Type of Pagination' },
   { id: 'example', title: 'Example' },
+]);
+
+const paginationItems = ref<Items[]>([
+  { name: 'showNextButton', pageName: 'ShowNextButton' },
+  { name: 'dynamicBullets', pageName: 'DynamicBullets' },
 ]);
 </script>
 
@@ -70,6 +77,8 @@ const anchorLinksItems = ref<anchorLinksItemsType[]>([
           </template>
         </DocItem>
       </div>
+
+      <NavPagination :items="paginationItems" />
     </div>
 
     <SideBar :anchorLinksItems="anchorLinksItems" />
